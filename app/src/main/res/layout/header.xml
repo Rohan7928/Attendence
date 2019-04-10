@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:background="@drawable/backg">
+   <ImageView
+       android:layout_width="match_parent"
+       android:layout_height="100dp"
+       android:src="@drawable/atten" />
+   <TextView
+       android:layout_marginTop="5dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Attendance Register"
+       android:textColor="#fff"
+       android:textSize="20dp"
+       android:textStyle="bold"
+
+       />
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="By Anonymous"
+       android:layout_marginLeft="2dp"
+       android:textColor="#fff"
+       android:textSize="20dp"
+
+       />
+
+</LinearLayout>

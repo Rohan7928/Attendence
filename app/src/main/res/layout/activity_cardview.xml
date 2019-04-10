@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".activity_cardview">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@android:color/holo_red_light"
+                android:layout_marginBottom="10dp"
+                android:elevation="15dp"
+                app:cardCornerRadius="10dp">
+
+
+                <RelativeLayout
+                    android:id="@+id/top"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Year/Standard"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/background_light"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_below="@+id/heading"
+                        android:layout_marginLeft="15dp"
+                        android:onClick="DecreaseInt"
+                        android:background="@android:color/background_light"
+                        android:src="@drawable/ic_chevron_left_black_24dp" />
+
+                    <TextView
+                        android:id="@+id/Sem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/heading"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_below="@+id/heading"
+                        android:layout_alignParentRight="true"
+                        android:onClick="IncreaseInt"
+                        android:background="@android:color/background_light"
+                        android:src="@drawable/ic_chevron_right_black_24dp" />
+
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:elevation="15dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/third"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="Select Type"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <RadioGroup
+                        android:id="@+id/rd_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/rd_lecture"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lecture"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textSize="16sp"/>
+
+                        <RadioButton
+                            android:id="@+id/rd_lab"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lab"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textSize="16sp"/>
+
+                        <RadioButton
+                            android:id="@+id/rd_seminar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Seminar"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textSize="16sp"/>
+
+                        <RadioButton
+                            android:id="@+id/rd_workshop"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/holo_red_light"
+                            android:text="Workshop" />
+
+                        <RadioButton
+                            android:id="@+id/rd_exam"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/holo_red_light"
+                            android:text="Exam"
+                            android:textSize="16sp"
+                            />
+                    </RadioGroup>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:elevation="5dp"
+                android:backgroundTint="@android:color/holo_red_light"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/Two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="Subject Details"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/Subname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/heading"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Subect Name"
+                        android:backgroundTint="@android:color/background_light"
+                        android:textColorHint="@android:color/background_light"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/Department"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="@android:color/background_light"
+                        android:textColorHint="@android:color/background_light"
+                        android:hint="Department"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/Division"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:backgroundTint="@android:color/background_light"
+                        android:textColorHint="@android:color/background_light"
+                        android:hint="Divison"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/fourth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/holo_red_light"
+                        android:text="Roll Details"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/roll_from"
+                            android:layout_width="match_parent"
+                            android:backgroundTint="@android:color/holo_red_light"
+                            android:textColorHint="@android:color/holo_red_light"
+                            android:layout_height="wrap_content"
+                            android:hint="Roll from"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/roll_to"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/holo_red_light"
+                            android:textColorHint="@android:color/holo_red_light"
+                            android:hint="Roll to"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:elevation="5dp"
+                android:backgroundTint="@android:color/holo_red_light"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/fifth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/background_light"
+                        android:layout_marginBottom="10dp"
+                        android:text="Schedule Details"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="9:05 AM"
+                        android:backgroundTint="@android:color/background_light"
+                        android:textColorHint="@android:color/background_light"
+
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/current_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Date"
+                        android:backgroundTint="@android:color/background_light"
+                        android:textColorHint="@android:color/background_light"
+
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="20dp"
+       android:layout_alignParentRight="true"
+        android:background="@drawable/roundbuttondiff"
+        android:drawableStart="@drawable/ic_save_red_24dp"
+        android:drawableLeft="@drawable/ic_save_red_24dp"
+        android:drawablePadding="10dp"
+        android:padding="15dp"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>

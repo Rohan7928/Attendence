@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".activity_signup"
+    android:background="@drawable/mario_2"
+    android:backgroundTint="#363C39"
+    android:fillViewport="true"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:tint="#863C3939"
+        android:scaleType="fitXY"
+        android:src="@drawable/mario_2"
+        android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/scripttb"
+            android:gravity="center"
+            android:text="Registration"
+            android:textColor="@android:color/background_light"
+            android:textSize="50dp"
+            android:textStyle="italic"
+            android:id="@+id/reg"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/reg"
+            android:text="Welcome Dear"
+            android:textColor="@android:color/background_light"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:id="@+id/inputView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reg"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:backgroundTint="@android:color/background_light"
+                android:id="@+id/etFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/scriptmtbold"
+                android:hint="First Name" >
+
+            </EditText>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:backgroundTint="@android:color/background_light"
+
+                android:id="@+id/etLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/scriptmtbold"
+                android:hint="Last Name" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:backgroundTint="@android:color/background_light"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/scriptmtbold"
+                android:hint="Email" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:backgroundTint="@android:color/background_light"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/scriptmtbold"
+                android:hint="Password" />
+
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:id="@+id/etConfirmpass"
+                android:backgroundTint="@android:color/background_light"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/scriptmtbold"
+                android:hint="Confirm Password" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:id="@+id/etFather"
+                android:layout_width="match_parent"
+                android:backgroundTint="@android:color/background_light"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/scriptmtbold"
+                android:hint="Father Name" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:id="@+id/etMother"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/background_light"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/scriptmtbold"
+                android:hint="Mother Name" />
+        </android.support.design.widget.TextInputLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+
+        </LinearLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+            <EditText
+                android:backgroundTint="@android:color/background_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/etAddress"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/scripttb"
+                android:hint="Address"
+                android:textSize="17dp" />
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/scripttb"
+                android:id="@+id/etMobile"
+                android:backgroundTint="@android:color/background_light"
+                android:hint="Mobile No."
+                android:textSize="17dp" />
+
+        </android.support.design.widget.TextInputLayout>
+        <Button
+            android:id="@+id/btSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/roundback"
+         android:layout_marginTop="20dp"
+            android:fontFamily="@font/scriptmtbold"
+            android:hint="Submit"
+            android:layout_gravity="center"
+            android:textColorHint="@android:color/holo_red_dark"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+</ScrollView>

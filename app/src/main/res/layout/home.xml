@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/top"
+        android:orientation="horizontal"
+        android:background="@android:color/holo_red_dark">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="start"
+            android:id="@+id/btn_img"
+            android:src="@drawable/ic_menu_gray_24dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="DashBoard"
+            android:padding="10dp"
+            android:textColor="@android:color/background_light"
+            android:fontFamily="@font/scriptmtbold"
+            />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top">
+
+
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@android:color/holo_red_light"
+        android:text="Please register subject first" />
+
+
+
+    <FrameLayout
+        android:layout_below="@id/top"
+        android:id="@+id/container_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/Add"
+        android:background="@drawable/roundbutton"
+        android:drawableStart="@drawable/add"
+        android:drawableLeft="@drawable/add"
+        android:drawablePadding="50dp"
+        android:padding="10dp"
+        />
+
+
+</RelativeLayout>
