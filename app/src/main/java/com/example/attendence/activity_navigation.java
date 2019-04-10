@@ -33,7 +33,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Collection;
-
+// ,fmldlflkjdfjdlkjfldkjf
 public class activity_navigation extends AppCompatActivity implements StudentAdapter.doAlert {
   DrawerLayout drawerLayout;
   RecyclerView recyclerView;
