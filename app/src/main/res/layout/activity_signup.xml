@@ -3,32 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".activity_signup"
-    android:background="@drawable/mario_2"
-    android:backgroundTint="#363C39"
+    android:background="@drawable/backg"
     android:fillViewport="true"
     >
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:tint="#863C3939"
-        android:scaleType="fitXY"
-        android:src="@drawable/mario_2"
-        android:layout_height="wrap_content" />
-
-
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ic_arrow_back_black_24dp"
+        android:drawableStart="@drawable/backg"
+        android:drawableLeft="@drawable/backg"
+        android:id="@+id/bthomepage"
+        />
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/scripttb"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/supercreative"
             android:gravity="center"
+            android:layout_marginTop="15dp"
             android:text="Registration"
-            android:textColor="@android:color/background_light"
-            android:textSize="50dp"
+            android:textColor="@color/white"
+            android:textSize="40dp"
             android:textStyle="italic"
             android:id="@+id/reg"
             />
@@ -37,9 +36,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:fontFamily="@font/supercreative"
+            android:layout_marginLeft="90dp"
             android:layout_below="@+id/reg"
             android:text="Welcome Dear"
-            android:textColor="@android:color/background_light"
+            android:textColor="@color/white"
             android:textSize="15dp"
             android:textStyle="bold" />
 
@@ -53,15 +54,25 @@
         android:orientation="vertical"
         android:padding="30dp">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/mario_1"
+            android:layout_marginLeft="130dp"
+            app:civ_border_width="10dp"
+            app:civ_border_color="#FF000000"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/background_light">
+            android:textColorHint="@color/white">
 
             <EditText
-                android:backgroundTint="@android:color/background_light"
+                android:backgroundTint="@color/white"
                 android:id="@+id/etFirstName"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/scriptmtbold"
@@ -74,12 +85,12 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/background_light">
-
+            android:textColorHint="@color/white">
             <EditText
-                android:backgroundTint="@android:color/background_light"
-
+                android:backgroundTint="@color/white"
                 android:id="@+id/etLastName"
+                android:textColor="@color/white"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/scriptmtbold"
@@ -90,12 +101,12 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/background_light">
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/etEmail"
-                android:backgroundTint="@android:color/background_light"
-
+                android:backgroundTint="@color/white"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/scriptmtbold"
@@ -104,11 +115,12 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/background_light">
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/etPassword"
-                android:backgroundTint="@android:color/background_light"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/white"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,12 +132,12 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/background_light">
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/etConfirmpass"
-                android:backgroundTint="@android:color/background_light"
-
+                android:textColor="@color/white"
+                android:backgroundTint="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/scriptmtbold"
@@ -137,13 +149,13 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/background_light">
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/etFather"
                 android:layout_width="match_parent"
-                android:backgroundTint="@android:color/background_light"
-
+                android:textColor="@color/white"
+                android:backgroundTint="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/scriptmtbold"
@@ -152,34 +164,26 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/background_light">
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/etMother"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/background_light"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/white"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/scriptmtbold"
                 android:hint="Mother Name" />
         </android.support.design.widget.TextInputLayout>
 
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp">
-
-
-        </LinearLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/background_light">
+            android:textColorHint="@color/white">
             <EditText
-                android:backgroundTint="@android:color/background_light"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAddress"
@@ -192,28 +196,29 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/background_light">
+            android:textColorHint="@color/white">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/scripttb"
                 android:id="@+id/etMobile"
-                android:backgroundTint="@android:color/background_light"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/white"
                 android:hint="Mobile No."
                 android:textSize="17dp" />
 
         </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/btSubmit"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:background="@drawable/roundback"
-         android:layout_marginTop="20dp"
-            android:fontFamily="@font/scriptmtbold"
+            android:background="@drawable/roundbutton"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/supercreative"
             android:hint="Submit"
             android:layout_gravity="center"
-            android:textColorHint="@android:color/holo_red_dark"
+            android:textColorHint="@color/black"
             android:textSize="25dp" />
 
     </LinearLayout>

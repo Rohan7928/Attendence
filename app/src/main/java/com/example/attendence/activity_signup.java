@@ -29,7 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 public class activity_signup extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
-    Button btnsubmit;
+    Button btnsubmit, bthome;
     EditText etfirst,etlast,etemail,etmobile,etfather,etmother,etaddress,etpassword,etconfirmpass;
 
     ProgressDialog progressDialog;
@@ -41,6 +41,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         btnsubmit=findViewById(R.id.btSubmit);
+        bthome=findViewById(R.id.bthomepage);
         etfirst= findViewById(R.id.etFirstName);
         etlast= findViewById(R.id.etLastName);
         etemail= findViewById(R.id.etEmail);
@@ -51,6 +52,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
         etmother= findViewById(R.id.etMother);
         etaddress= findViewById(R.id.etAddress);
         btnsubmit.setOnClickListener(this);
+        bthome.setOnClickListener(this);
         fb = FirebaseFirestore.getInstance();
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Wait a second baby...");
@@ -65,8 +67,19 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
             case R.id.btSubmit:
                 Submit();
                 break;
+                case R.id.bthomepage:
+                Home();
+                break;
         }
     }
+
+    private void Home() {
+        Intent intent = new Intent(this, activity_choose.class);
+        startActivity(intent);
+        Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
+
+    }
+
     private void Submit() {
         final String fname=etfirst.getText().toString().trim();
         final String lname=etlast.getText().toString().trim();
@@ -112,11 +125,10 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
     }
 
     private void savedata(String fname, String lname, String email, String pass, String phone, String father, String mother, String address) {
-
-        CollectionReference ROLL=fb.collection("Roll No.");
-
+    progressDialog.show();
         UserDataR user=new UserDataR(fname, lname, email,pass,phone,father,mother,address);
- fb.collection("Roll No.").document(email).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+        fb.collection("Data").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("user")
+         .document(email).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
      @Override
      public void onComplete(@NonNull Task<Void> task) {
          if(task.isSuccessful())
@@ -124,6 +136,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
            progressDialog.dismiss();
              Toast.makeText(activity_signup.this, "Record", Toast.LENGTH_SHORT).show();
               startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+              finish();
          }
          else
          {

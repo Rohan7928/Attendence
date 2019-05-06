@@ -6,20 +6,14 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -29,6 +23,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder> {
    ArrayList<Subjects> sub_list=new ArrayList<>();
    ArrayList<String> ids=new ArrayList<>();
+   ArrayList<Attendence> attend_list=new ArrayList<>();
    Context context;
    FirebaseAuth auth=FirebaseAuth.getInstance();
    FirebaseFirestore db=FirebaseFirestore.getInstance();
@@ -66,9 +61,22 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder
                 String subject = new Gson().toJson(subjects);
                 Intent intent = new Intent(context, Take_attendence.class);
                 intent.putExtra("list", subject);
+                intent.putExtra("id", ids.get(i));
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
+            }
+        });
+       myHolder.chart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String subject=new Gson().toJson(subjects);
+                Intent intent=new Intent(context,ViewAttendence.class);
+                intent.putExtra("list",subject);
+                intent.putExtra("id",ids.get(i));
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
         myHolder.person.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +105,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder
         myHolder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listner.onAlert(i,ids.get(i));
+                listner.onAlert(i,ids.get(i),subjects.sub_id);
             }
         });
 
@@ -113,7 +121,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder
         this.ids.add(id);
         notifyDataSetChanged();
     }
-    private void getdata() {
+ /*   private void getdata() {
 
         String uid = auth.getUid();
         db.collection("Subjects").document(uid).collection("subjects")
@@ -132,10 +140,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder
                     }
                 });
 
-    }
+    }*/
 
     public void removeData(int i) {
         this.sub_list.remove(i);
+        this.attend_list.remove(i);
         this.ids.remove(i);
         notifyDataSetChanged();
     }
@@ -162,6 +171,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder
     }
     interface  doAlert
     {
-        void onAlert(int i, String s);
+        void onAlert(int i, String s1, String s);
     }
 }

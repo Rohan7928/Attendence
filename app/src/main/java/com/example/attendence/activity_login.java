@@ -21,18 +21,22 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class activity_login extends AppCompatActivity implements View.OnClickListener {
     TextView forgot;
     EditText etUser, etPassword;
-    Button btLogin, bthome;
+    Button btLogin, bthome,btregister;
     ImageView checkUser, checkPassword;
     DataBaseHelper helper;
     ProgressDialog progressDialog;
     FirebaseAuth auth;
+    FirebaseFirestore db;
 
     @Nullable
     @Override
@@ -44,28 +48,26 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
        forgot=findViewById(R.id.forgot_pass);
         btLogin =  findViewById(R.id.btLogin);
         bthome =  findViewById(R.id.bthome);
+        btregister =  findViewById(R.id.btregister);
         checkUser = findViewById(R.id.checkuser);
         checkPassword = findViewById(R.id.checkpassword);
         btLogin.setOnClickListener(this);
         bthome.setOnClickListener(this);
+        btregister.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Wait a second baby...");
         auth = FirebaseAuth.getInstance();
-
+        db=FirebaseFirestore.getInstance();
         helper = new DataBaseHelper(this);
 
         etUser.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 if (etUser.getText().length() > 4)
@@ -77,14 +79,9 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         etPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
+            }            @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 if (etPassword.getText().length() > 4)
@@ -100,7 +97,6 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -111,9 +107,14 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             case R.id.bthome:
                 home();
                 break;
+            case R.id.btregister:
+                signup();
+                break;
         }
     }
-
+    private void signup() {
+        startActivity(new Intent(getApplicationContext(),activity_signup.class));
+    }
     private void home() {
         Intent intent = new Intent(this, activity_choose.class);
         startActivity(intent);
@@ -138,15 +139,63 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
     private void dologin(String username, String password) {
         progressDialog.show();
-        auth.signInWithEmailAndPassword(username, password).
+               auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful())
+                {
+                    progressDialog.dismiss();
+                    startActivity(new Intent(getApplicationContext(), activity_navigation.class));
+                    finish();
+                }
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(activity_login.this, e.getMessage(), Toast.LENGTH_SHORT);
+            }
+        });
+
+
+
+
+       /* db.collection("Data").document(FirebaseAuth.getInstance().getUid()).collection("user")
+                .document(mail).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                UserDataR userDataR = documentSnapshot.toObject(UserDataR.class);
+                String e_mail=userDataR.getEmail();
+                String password = userDataR.getPass();
+                if (e_mail.equals(mail)&& password.equals(pass)) {
+                    progressDialog.dismiss();
+                    startActivity(new Intent(getApplicationContext(), activity_navigation.class));
+                }
+                else
+                {
+                    progressDialog.dismiss();
+                    Toast.makeText(activity_login.this, "Invalid user", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });*/
+
+
+
+
+
+
+
+
+
+       /* auth.signInWithEmailAndPassword(username, password).
                 addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "User login", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), activity_navigation.class));
                     }
-                });
+                });*/
        /* long id= helper.save(username,password);
         if(id<0)
         {

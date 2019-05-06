@@ -21,7 +21,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@android:color/holo_red_light"
                 android:layout_marginBottom="10dp"
                 android:elevation="15dp"
                 app:cardCornerRadius="10dp">
@@ -29,6 +28,7 @@
 
                 <RelativeLayout
                     android:id="@+id/top"
+                    android:background="@color/demo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="10dp">
@@ -96,7 +96,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:text="Select Type"
-                        android:textColor="@android:color/holo_red_light"
+                        android:textColor="#0d6dc4"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
 
@@ -110,38 +110,33 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Lecture"
-                            android:textColor="@android:color/holo_red_light"
-                            android:textSize="16sp"/>
+                            android:textColor="#0d6dc4"                            android:textSize="16sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_lab"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Lab"
-                            android:textColor="@android:color/holo_red_light"
-                            android:textSize="16sp"/>
+                            android:textColor="#0d6dc4"                            android:textSize="16sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_seminar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Seminar"
-                            android:textColor="@android:color/holo_red_light"
-                            android:textSize="16sp"/>
+                            android:textColor="#0d6dc4"                            android:textSize="16sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_workshop"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@android:color/holo_red_light"
-                            android:text="Workshop" />
+                            android:textColor="#0d6dc4"                            android:text="Workshop" />
 
                         <RadioButton
                             android:id="@+id/rd_exam"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@android:color/holo_red_light"
-                            android:text="Exam"
+                            android:textColor="#0d6dc4"                            android:text="Exam"
                             android:textSize="16sp"
                             />
                     </RadioGroup>
@@ -153,13 +148,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:elevation="5dp"
-                android:backgroundTint="@android:color/holo_red_light"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="@color/demo"
                     android:padding="10dp">
 
                     <TextView
@@ -180,6 +175,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginBottom="10dp"
                         android:hint="Subect Name"
+                        android:textColor="@color/white"
                         android:backgroundTint="@android:color/background_light"
                         android:textColorHint="@android:color/background_light"
                         android:textSize="16sp" />
@@ -193,6 +189,7 @@
                         android:backgroundTint="@android:color/background_light"
                         android:textColorHint="@android:color/background_light"
                         android:hint="Department"
+                        android:textColor="@color/white"
                         android:textSize="16sp" />
 
                     <EditText
@@ -202,6 +199,7 @@
                         android:layout_centerInParent="true"
                         android:backgroundTint="@android:color/background_light"
                         android:textColorHint="@android:color/background_light"
+                        android:textColor="@color/white"
                         android:hint="Divison"
                         android:textSize="16sp" />
 
@@ -225,8 +223,7 @@
                         android:id="@+id/fourth"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/holo_red_light"
-                        android:text="Roll Details"
+                        android:textColor="#0d6dc4"                        android:text="Roll Details"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
 
@@ -239,8 +236,8 @@
                         <EditText
                             android:id="@+id/roll_from"
                             android:layout_width="match_parent"
-                            android:backgroundTint="@android:color/holo_red_light"
-                            android:textColorHint="@android:color/holo_red_light"
+                            android:backgroundTint="#0d6dc4"
+                            android:textColorHint="#0d6dc4"
                             android:layout_height="wrap_content"
                             android:hint="Roll from"
                             android:textSize="16sp" />
@@ -249,8 +246,8 @@
                             android:id="@+id/roll_to"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@android:color/holo_red_light"
-                            android:textColorHint="@android:color/holo_red_light"
+                            android:backgroundTint="#0d6dc4"
+                            android:textColorHint="#0d6dc4"
                             android:hint="Roll to"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -264,13 +261,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:elevation="5dp"
-                android:backgroundTint="@android:color/holo_red_light"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="@color/demo"
                     android:padding="10dp">
 
                     <TextView
@@ -283,24 +280,24 @@
                         android:textSize="20sp"
                         android:textStyle="bold"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="9:05 AM"
                         android:backgroundTint="@android:color/background_light"
                         android:textColorHint="@android:color/background_light"
-
+                        android:textColor="@color/white"
                         android:textSize="16sp" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/current_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Date"
+                        android:hint="Select Date"
                         android:backgroundTint="@android:color/background_light"
                         android:textColorHint="@android:color/background_light"
-
+                        android:textColor="@color/white"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -314,13 +311,13 @@
 
     <Button
         android:id="@+id/button_add"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
        android:layout_alignParentRight="true"
         android:background="@drawable/roundbuttondiff"
-        android:drawableStart="@drawable/ic_save_red_24dp"
-        android:drawableLeft="@drawable/ic_save_red_24dp"
+        android:drawableStart="@drawable/ic_save_black_24dp"
+        android:drawableLeft="@drawable/ic_save_black_24dp"
         android:drawablePadding="10dp"
         android:padding="15dp"
         android:layout_alignParentBottom="true"/>

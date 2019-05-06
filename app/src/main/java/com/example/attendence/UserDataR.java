@@ -75,7 +75,45 @@ class UserDataR {
     private String mother;
     private String address;
 
+    public String getSem() {
+        return sem;
+    }
+
+    public void setSem(String sem) {
+        this.sem = sem;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getClas() {
+        return clas;
+    }
+
+    public void setClas(String clas) {
+        this.clas = clas;
+    }
+
+    private String sem;
+    private String department;
+    private String clas;
     public UserDataR(String fname, String lname, String email, String pass, String phone, String father, String mother, String address) {
+        this.fname=fname;
+        this.lname=lname;
+        this.email=email;
+        this.pass=pass;
+        this.phone=phone;
+        this.father=father;
+        this.mother=mother;
+        this.address=address;
+
+    }
+    public UserDataR(String fname, String lname, String email, String pass, String phone, String father, String mother, String address, String sem, String department, String clas) {
     this.fname=fname;
     this.lname=lname;
     this.email=email;
@@ -84,6 +122,9 @@ class UserDataR {
     this.father=father;
     this.mother=mother;
     this.address=address;
+    this.sem=sem;
+    this.department=department;
+    this.clas=clas;
     }
     public UserDataR(){
 

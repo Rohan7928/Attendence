@@ -4,79 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mario"
-
+    android:background="@drawable/backg"
     android:orientation="vertical"
-    android:padding="52dp"
     tools:context=".activity_login">
+   <Button
+       android:layout_width="40dp"
+       android:layout_height="40dp"
+       android:background="@drawable/ic_arrow_back_black_24dp"
+       android:drawableStart="@drawable/backg"
+       android:drawableLeft="@drawable/backg"
+       android:id="@+id/bthome"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:padding="52dp"
         android:orientation="vertical">
-
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@android:color/white"
-            android:fontFamily="@font/scripttb"
+            android:fontFamily="@font/supercreative"
             android:paddingTop="24dp"
             android:text="Sign in"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/background_light"
             android:textSize="60dp"
             android:textStyle="bold" />
-
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/supercreative"
+            android:gravity="center"
+            android:text="Good to See you Again"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold"/>
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:gravity="center"
-        android:text="Good to See you Again"
-        android:textColor="@android:color/background_light"
-        android:textStyle="bold"
-
-        />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         android:gravity="center"
+        android:padding="52dp"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical">
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/username_text_input_ayout"
-                    android:textColorHint="@android:color/background_light"
+                    android:textColorHint="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <EditText
                         android:id="@+id/etUser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/background_light"
+                        android:backgroundTint="@color/white"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:ems="10"
+                        android:textColor="@color/black"
                         android:hint="User" />
-
                 </android.support.design.widget.TextInputLayout>
-
                 <ImageView
                     android:id="@+id/checkuser"
                     android:layout_width="20dp"
@@ -86,31 +76,26 @@
                     android:src="@drawable/checked"
                     android:visibility="gone" />
             </RelativeLayout>
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/username_text_input_layout"
                     android:layout_width="match_parent"
-                    android:textColorHint="@android:color/background_light"
+                    android:textColorHint="@color/white"
                     android:layout_height="wrap_content">
-
                     <EditText
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
-                        android:backgroundTint="@android:color/background_light"
+                        android:backgroundTint="@color/white"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:ems="10"
                         android:hint="Password"
-
+                        android:textColor="@color/black"
                         android:inputType="textPassword" />
-
                 </android.support.design.widget.TextInputLayout>
-
                 <ImageView
                     android:id="@+id/checkpassword"
                     android:layout_width="20dp"
@@ -120,9 +105,6 @@
                     android:src="@drawable/checked"
                     android:visibility="gone" />
             </RelativeLayout>
-
-        </LinearLayout>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,17 +112,16 @@
             android:layout_marginTop="10dp"
             android:text="ForgotPassword"
             android:textAlignment="textEnd"
-            android:textColor="@android:color/background_light"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:id="@+id/forgot_pass"/>
-
         <Button
             android:id="@+id/btLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:backgroundTint="@android:color/holo_red_light"
+            android:background="@drawable/roundbutton"
             android:elevation="4dp"
             android:fontFamily="@font/arial"
             android:paddingLeft="50dp"
@@ -148,21 +129,24 @@
             android:paddingBottom="16dp"
             android:paddingRight="50dp"
             android:text="Login"
-            android:textColor="@android:color/white" />
-
+            android:textSize="15sp"
+            android:textColor="@color/black" />
         <Button
-            android:id="@+id/bthome"
-            android:layout_width="wrap_content"
+            android:id="@+id/btregister"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/roundbutton"
+            android:elevation="4dp"
             android:fontFamily="@font/arial"
             android:paddingLeft="50dp"
             android:paddingTop="16dp"
-            android:paddingRight="50dp"
             android:paddingBottom="16dp"
-            android:text="Home"
-            android:textColor="@android:color/holo_red_light" />
+            android:paddingRight="50dp"
+            android:text="SignUp"
+            android:textSize="15sp"
+            android:textColor="@color/black" />
+ />
     </LinearLayout>
-
 </RelativeLayout>

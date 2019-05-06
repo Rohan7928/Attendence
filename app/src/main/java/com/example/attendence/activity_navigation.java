@@ -32,8 +32,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Collection;
-// ,fmldlflkjdfjdlkjfldkjf
 public class activity_navigation extends AppCompatActivity implements StudentAdapter.doAlert {
   DrawerLayout drawerLayout;
   RecyclerView recyclerView;
@@ -54,17 +52,14 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
             super.onBackPressed();
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-       progressDialog=new ProgressDialog(this);
-       progressDialog.setMessage("Wait a sec...");
-       progressDialog.setCanceledOnTouchOutside(false);
-       progressDialog.setCancelable(false);
-
-
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Wait a sec...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
         drawerLayout=findViewById(R.id.drawable);
         navigationView=findViewById(R.id.navigation);
         imageView=findViewById(R.id.btn_img);
@@ -73,12 +68,11 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
         db = FirebaseFirestore.getInstance();
         recyclerView = findViewById(R.id.recycler);
         status = findViewById(R.id.status);
-       adapter=new StudentAdapter(getApplicationContext(),this);
-
+        adapter=new StudentAdapter(getApplicationContext(),this);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
-       getsave();
+       getsavedata();
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,42 +93,30 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
                 {
                     case R.id.home_page:
                     {
-                        startActivity(new Intent(getApplicationContext(),activity_fragment.class));
+                        startActivity(new Intent(getApplicationContext(),activity_navigation.class));
                       // replaceFragment(new activity_fragment());
                         drawerLayout.closeDrawer(Gravity.START);
                         break;
                     }
-                    case R.id.add_subject:
+                    case R.id.tstatus:
                     {
-
+                        startActivity(new Intent(getApplicationContext(),activity_viewstatus.class));
+                      // replaceFragment(new activity_fragment());
                         drawerLayout.closeDrawer(Gravity.START);
                         break;
                     }
-                    case R.id.view_subject:
+                   case R.id.change_pass:
                     {
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }
-                    case R.id.enter_student:
-                    {
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }
-                    case R.id.student_details:
-                    {
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }case R.id.change_pass:
-                    {
+                        startActivity(new Intent(getApplicationContext(),Change_password.class));
                         drawerLayout.closeDrawer(Gravity.START);
                         break;
                     }case R.id.log_out:
                     {
+                        auth.signOut();
+                        startActivity(new Intent(getApplicationContext(),activity_login.class));
                         drawerLayout.closeDrawer(Gravity.START);
                         break;
                     }
-
-
                 }
                 return true;
             }
@@ -146,9 +128,8 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
             }
         });
     }
-
-    private void getsave() {
-        db.collection("Subjects").document(FirebaseAuth.getInstance().getUid()).collection("subjects")
+    private void getsavedata() {
+        db.collection("Data").document(FirebaseAuth.getInstance().getUid()).collection("Subjects").whereEqualTo("email",auth.getCurrentUser().getEmail())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -172,11 +153,7 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
             }
 
         });
-
     }
-
-
-
     public void initdialog()
     {
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
@@ -200,8 +177,6 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
    dialog=builder.create();
    dialog.setCancelable(false);
    dialog.setCanceledOnTouchOutside(false);
-
-
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -209,9 +184,8 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
         transaction.replace(R.id.container_frame, fragment);
         transaction.commit();
     }
-
     @Override
-    public void onAlert(final int i, final String s) {
+    public void onAlert(final int i, final String s1, final String s) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Are you sure, You wanted to make decision");
         alertDialogBuilder.setPositiveButton("yes",
@@ -219,14 +193,14 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         String uid = FirebaseAuth.getInstance().getUid();
-                        DocumentReference reference = db.collection("Subjects").document(uid).collection("subjects").document(s);
+                        DocumentReference reference = db.collection("Data").document(uid).collection("Subjects").document(s1);
                         reference.delete()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
+                                        deleteAttendence(s1,i);
                                         adapter.removeData(i);
                                         adapter.notifyDataSetChanged();
-
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -235,18 +209,32 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
                                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
-
                     }
                 });
 
         alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
-
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+    private void deleteAttendence(String s, final int i) {
+        String uid = FirebaseAuth.getInstance().getUid();
+        DocumentReference reference = db.collection("Data").document(uid).collection("Attendence").document(s);
+        reference.delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(activity_navigation.this, "Attendence Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

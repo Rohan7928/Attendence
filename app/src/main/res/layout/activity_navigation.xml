@@ -16,7 +16,6 @@
         app:headerLayout="@layout/header"
         app:menu="@menu/menu_menu"
         app:itemTextColor="@color/colorPrimaryDark"
-        android:padding="18dp"
         android:id="@+id/navigation"
         android:fitsSystemWindows="true"
         android:layout_gravity="start"

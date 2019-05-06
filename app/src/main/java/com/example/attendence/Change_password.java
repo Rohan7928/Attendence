@@ -45,22 +45,31 @@ public class Change_password extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         card = findViewById(R.id.cardview);
         progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Wait a second baby...");
         firebaseuser = auth.getCurrentUser();
         card.setVisibility(View.GONE);
+        phn.setVisibility(View.INVISIBLE);
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String mail = Email.getText().toString();
-
-                db.collection("Roll No.").document(mail).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                final String number=phn.getText().toString();
+               progressDialog.show();
+                db.collection("Data").document(FirebaseAuth.getInstance().getUid()).collection("user")
+                        .document(mail).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         UserDataR userDataR = documentSnapshot.toObject(UserDataR.class);
                        String e_mail=userDataR.getEmail();
                         String phone = userDataR.getPhone();
                         if (e_mail.equals(mail)) {
+                            progressDialog.dismiss();
                             phn.setVisibility(View.VISIBLE);
                             enternumber(phone);
+                        }
+                        else
+                        {
+                            Toast.makeText(Change_password.this, "Invalid", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -74,7 +83,9 @@ public class Change_password extends AppCompatActivity {
             public void onClick(View v) {
                 String password = pass.getText().toString().trim();
                 String cpasword = confirmpass.getText().toString();
+                progressDialog.show();
                 if (password.equals(cpasword)) {
+                    progressDialog.dismiss();
                     changepassword(password);
                     userpassword(password);
 
@@ -96,9 +107,11 @@ public class Change_password extends AppCompatActivity {
     private void userpassword(String password) {
 
         String mail=Email.getText().toString();
-        //UserDataR userDataR=new UserDataR();
-        //userDataR.setPass(password);
-        db.collection("Roll No.").document(mail).update("pass",password).addOnSuccessListener(new OnSuccessListener<Void>() {
+        progressDialog.dismiss();
+
+       db.collection("Data").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+               .collection("user")
+               .document(mail).update("pass",password).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(getApplicationContext(),"Password Updated..",Toast.LENGTH_SHORT).show();

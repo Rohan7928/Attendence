@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.attendence">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Change_password"></activity>
+        <activity android:name=".activity_viewstatus"></activity>
+        <activity android:name=".activity_status" />
+        <activity android:name=".studenthome" />
+        <activity android:name=".student_signup" />
+        <activity android:name=".student_login" />
+        <activity android:name=".View_Attendance" />
+        <activity android:name=".Change_password" />
         <activity android:name=".Edit_Subject" />
         <activity android:name=".Update" />
         <activity android:name=".Take_attendence" />
@@ -18,16 +28,15 @@
         <activity android:name=".activity_fragment" />
         <activity android:name=".activity_navigation" />
         <activity android:name=".activity_signup" />
-        <activity android:name=".activity_login">
+        <activity android:name=".activity_login" />
+        <activity android:name=".activity_choose" />
+        <activity android:name=".ViewAttendence" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity android:name=".activity_choose" />
-        <activity android:name=".MainActivity">
         </activity>
     </application>
 

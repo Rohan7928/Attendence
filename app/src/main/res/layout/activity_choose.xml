@@ -3,96 +3,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".activity_choose"
-    android:background="@drawable/mario_2">
+    android:background="@color/white"
+   >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:fontFamily="@font/scriptmtbold"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/typography_times"
         android:gravity="center"
         android:text="Welcome"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/black"
         android:textSize="50dp"
-        android:textStyle="bold"
+
         android:id="@+id/first"/>
-
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/first"
-        android:fontFamily="@font/scriptmtbold"
-        android:gravity="center"
-
-        android:layout_marginTop="200dp"
-        android:text="Register your Self for the best Experience "
-        android:textColor="@android:color/background_light"
-        android:textSize="20sp"
-        android:id="@+id/n2"/>
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/scriptmtbold"
-        android:gravity="center"
-
-        android:layout_below="@id/n2"
-        android:text=" and if you are already registered "
-        android:textColor="@android:color/background_light"
-        android:textSize="20sp"
-        android:id="@+id/n3"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/scriptmtbold"
-        android:gravity="center"
-        android:layout_below="@id/n3"
-        android:text="then login yourself"
-        android:textColor="@android:color/background_light"
-        android:textSize="20dp" />
-
-
-
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:id="@+id/linear">
+            <ImageView
+                android:id="@+id/btLogIn"
+                android:layout_width="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/teacher"
+                android:layout_height="130dp"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+            <ImageView
+                android:id="@+id/btLogIn2"
+                android:layout_width="150dp"
+                android:layout_height="130dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/student"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+        </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       android:gravity="bottom"
-
-
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btLogIn"
-            android:layout_width="150dp"
-        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/roundback"
-            android:backgroundTint="@android:color/holo_red_light"
-            android:fontFamily="@font/scripttb"
-            android:text="Login "
-            android:textAllCaps="false"
-            android:textColor="@android:color/background_light"
-            android:textSize="25dp" />
-
-        <Button
-            android:id="@+id/btSignUp"
-            android:layout_width="150dp"
-            android:layout_gravity="center"
-           android:layout_marginBottom="70dp"
+            android:layout_marginTop="180dp"
+            android:text="Teacher"
+            android:layout_marginLeft="59dp"
+            android:textSize="25dp"
+            android:textColor="@color/demo"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundback"
-            android:backgroundTint="@android:color/background_light"
-            android:fontFamily="@font/scripttb"
-            android:text="Signup"
-            android:textAllCaps="false"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="25dp" />
+            android:layout_marginTop="180dp"
+            android:text="Student"
+            android:layout_marginLeft="80dp"
+            android:textSize="25dp"
+            android:textColor="@color/demo"
+            android:textStyle="bold"
+            />
+
 
 
     </LinearLayout>
+
+
 
 </RelativeLayout>

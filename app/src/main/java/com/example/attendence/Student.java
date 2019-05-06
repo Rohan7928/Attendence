@@ -1,21 +1,22 @@
 package com.example.attendence;
 
+import java.text.StringCharacterIterator;
+
 class Student {
-    public Student(String name, int c, boolean b) {
+    public Student(String name, int c, boolean b, String current) {
         this.name = name;
         this.roll_no = c;
         this.status = b;
+        this.current=current;
     }
-
+public Student()
+{}
     public Student(String name, int c) {
         this.name = name;
         this.roll_no = c;
 
     }
 
-    public Student() {
-
-    }
 
     public String getName() {
         return name;
@@ -44,5 +45,15 @@ class Student {
     String name;
     int roll_no;
     Boolean status;
+    String current;
+    public String getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(String current) {
+        this.current = current;
+    }
+
+
 
    }

@@ -1,15 +1,42 @@
 package com.example.attendence;
 
+import android.webkit.SafeBrowsingResponse;
+
 import java.util.List;
 
 class Subjects {
 
     String semester;
     String sub_name;
+
+    public String getSub_id() {
+        return sub_id;
+    }
+
+    public void setSub_id(String sub_id) {
+        this.sub_id = sub_id;
+    }
+
+    public Subjects()
+    {
+
+    }
+
+    String sub_id;
     String sub_dept;
     String sub_division;
     String type;
     int rollfrom, rollto;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    String email;
 
     public String getCurrent() {
         return current;
@@ -20,6 +47,7 @@ class Subjects {
     }
 
     String current;
+
 
        List<Student> students;
 
@@ -89,11 +117,8 @@ class Subjects {
         this.students = students;
     }
 
- public Subjects()
- {
 
- }
-    public Subjects(String semester, String subname, String subdept, String subdivision, String type, List<Student> student, int start, int end,String current) {
+    public Subjects(String email,String semester, String subname, String subdept, String subdivision, String type, List<Student> student, int start, int end,String current) {
 this.semester=semester;
 this.sub_name=subname;
 this.sub_dept=subdept;
@@ -103,6 +128,7 @@ this.students=student;
 this.rollfrom=start;
 this.rollto=end;
 this.current=current;
+this.email=email;
 
     }
 }
