@@ -41,7 +41,7 @@ import static com.example.attendence.Util.getDate;
 import static io.opencensus.tags.TagValue.MAX_LENGTH;
 
 public class activity_cardview extends AppCompatActivity implements View.OnClickListener {
-    TextView sem_num,date,Time;
+    TextView sem_num,date;
     EditText sub_name, sub_divison, sub_dept,rollfrom, rollto;
     RadioGroup radioGroup;
     FloatingActionButton btn_add;
@@ -68,7 +68,6 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
         subjects = new Gson().fromJson(getIntent().getStringExtra("list"),Subjects.class);
         id = getIntent().getStringExtra("id");
 
-        Time=findViewById(R.id.time);
         date=findViewById(R.id.current_date);
         sem_num = findViewById(R.id.Sem);
         sub_divison = findViewById(R.id.Division);
@@ -137,7 +136,6 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
             String strDate = mdformat.format(calendar.getTime());
 
             date.setOnClickListener(this);
-           Time.setText(strDate);
               btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -234,7 +232,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
         }
             Subjects subjects = new Subjects(email,semester,subname,subdept,subdivision, type, student, start, end,current);
         db.collection("Data").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Subjects")
-                .document(UUID.randomUUID().toString()).set(subjects)
+                .document(id).set(subjects)
                     .addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {

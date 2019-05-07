@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/go_bg"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -9,7 +10,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/top"
         android:orientation="horizontal"
-        android:background="@drawable/backg">
+        android:background="@color/colorPrimary">
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -41,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textColor="#0d6dc4"
+        android:textColor="@color/black"
         android:text="Please register subject first" />
     <FrameLayout
         android:layout_below="@id/top"
@@ -54,6 +55,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
+        android:backgroundTint="@color/colorPrimary"
         android:layout_marginBottom="20dp"
         android:id="@+id/Add"
         android:src="@drawable/ic_save"

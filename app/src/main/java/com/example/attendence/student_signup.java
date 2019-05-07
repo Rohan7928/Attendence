@@ -117,7 +117,7 @@ public class student_signup extends AppCompatActivity implements View.OnClickLis
         });
     }
     private void savedata(String fname, String lname, String email, String pass, String phone, String father, String mother, String address, String sem, String department, String clas) {
-        UserDataR user=new UserDataR(fname, lname, email,pass,phone,father,mother,address,sem,department,clas);
+        UserDataR user=new UserDataR(fname, lname, email,pass,phone,father,mother,address,sem,department,clas,"Student");
         fb.collection("StudentData").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("user")
                 .document(email).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

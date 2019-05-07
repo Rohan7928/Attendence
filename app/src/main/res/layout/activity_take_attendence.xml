@@ -9,11 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/top"
-        android:orientation="horizontal"
-        android:background="@drawable/backg">
+        android:padding="4dp"
+        android:background="@color/colorPrimary">
         <Button
             android:layout_width="40dp"
-            android:layout_height="30dp"
+            android:layout_height="40sp"
+            android:layout_centerVertical="true"
             android:layout_marginTop="15dp"
             android:background="@drawable/ic_arrow_back_black_24dp"
             android:drawableStart="@drawable/backg"
@@ -24,10 +25,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="12dp"
             android:text="Take Attendance"
             android:padding="5dp"
+            android:layout_centerVertical="true"
             android:textStyle="bold"
             android:textColor="@android:color/background_light"
             android:fontFamily="@font/supercreative"
@@ -37,6 +39,7 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="45dp"
+            android:layout_centerVertical="true"
             android:id="@+id/uncheckall"
             android:src="@drawable/ic_check_box_outline_blank_black_24dp"
             android:layout_alignParentRight="true" />
@@ -44,6 +47,7 @@
             android:layout_width="30dp"
             android:layout_height="50dp"
             android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
             android:id="@+id/checkall"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_check_box_black_24dp"
@@ -60,14 +64,16 @@
 
             <Button
                 android:id="@+id/txtdate"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:elevation="25dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColorHint="#6000"
+                android:layout_marginBottom="16dp"
                 android:textColor="@color/black"
                 android:background="@color/white"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:textSize="20dp"
                 android:hint="date"/>
@@ -75,6 +81,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:padding="8dp"
             android:layout_height="wrap_content"
             android:weightSum="70">
 
@@ -84,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="20"
                 android:text="Roll"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:gravity="end" />
@@ -97,7 +104,7 @@
                 android:layout_toRightOf="@+id/txtroll"
                 android:layout_weight="20"
                 android:text="Name"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:gravity="end" />
@@ -131,6 +138,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_marginBottom="20dp"
         android:id="@+id/btn_attend"
         android:src="@drawable/ic_save"

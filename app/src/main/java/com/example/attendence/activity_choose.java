@@ -31,19 +31,10 @@ public class activity_choose extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
                 progressDialog.show();
+                Intent intent = new Intent(activity_choose.this,activity_login.class);
+                startActivity(intent);
                 Toast.makeText(getApplicationContext(),"Login As Teacher",Toast.LENGTH_SHORT).show();
-                if (user==null) {
-                    progressDialog.dismiss();
-                    Intent intent = new Intent(activity_choose.this,activity_login.class);
-                    startActivity(intent);
-                    finish();
-                }else
-                {
-                    progressDialog.dismiss();
-                  Intent intent=new Intent(activity_choose.this,activity_navigation.class);
-                 startActivity(intent);
-                 finish();
-                }
+
             }
         });
       btLogIn2.setOnClickListener(new View.OnClickListener() {

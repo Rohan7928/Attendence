@@ -29,7 +29,7 @@
 
                 <RelativeLayout
                     android:id="@+id/top"
-                    android:background="@color/demo"
+                    android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="10dp">
@@ -155,7 +155,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@color/demo"
+                    android:background="@color/colorPrimary"
                     android:padding="10dp">
 
                     <TextView
@@ -268,7 +268,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@color/demo"
+                    android:background="@color/colorPrimary"
                     android:padding="10dp">
 
                     <TextView
@@ -281,15 +281,6 @@
                         android:textSize="20sp"
                         android:textStyle="bold"/>
 
-                    <Button
-                        android:id="@+id/time"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:hint="9:05 AM"
-                        android:backgroundTint="@android:color/background_light"
-                        android:textColorHint="@color/demo"
-                        android:textColor="@color/demo"
-                        android:textSize="20sp" />
 
                     <Button
                         android:id="@+id/current_date"
@@ -314,7 +305,7 @@
 <android.support.design.widget.FloatingActionButton
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/demo"
+    android:backgroundTint="@color/colorPrimaryDark"
     android:src="@drawable/ic_save"
     android:id="@+id/button_add"
     android:layout_alignParentBottom="true"

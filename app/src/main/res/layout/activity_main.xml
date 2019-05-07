@@ -5,30 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/go_bg"
     tools:context=".MainActivity">
 
    <ImageView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:src="@drawable/mario_2"
-       android:scaleType="fitXY"/>
-
-   <TextView
-       android:layout_width="match_parent"
+       android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-      android:text="Welcome again"
-       android:layout_below="@+id/mario"
-       android:textSize="20sp"
-      android:fontFamily="@font/scriptmtbold"
-       android:padding="24dp"
-       android:textColor="@android:color/background_light"
-       android:layout_centerInParent="true"
-       android:gravity="center"/>
-   <ImageView
-       android:layout_width="100dp"
-       android:id="@+id/mario"
-       android:layout_height="100dp"
-       android:tint="#263C3939"
-       android:src="@drawable/mario_1"
+       android:src="@drawable/ic_app_logo"
        android:layout_centerInParent="true"/>
+
 </RelativeLayout>

@@ -107,15 +107,15 @@ public class ViewAttendence extends AppCompatActivity implements View.OnClickLis
         TableLayout tl = findViewById(R.id.table);
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-        tr.addView(getTextView(0, "Name", Color.WHITE, Typeface.BOLD, Color.BLUE));
-        tr.addView(getTextView(0, "Roll No.", Color.WHITE, Typeface.BOLD, Color.BLUE));
+        tr.addView(getTextView(0, "Name", Color.WHITE, Typeface.BOLD,ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+        tr.addView(getTextView(0, "Roll No.", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
         for (Attendence attendence : attendencesList) {
-            tr.addView(getTextView(0, attendence.date, Color.WHITE, Typeface.BOLD, Color.BLUE));
+            tr.addView(getTextView(0, attendence.date, Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
 
         }
-        tr.addView(getTextView(0, "Total Present", Color.WHITE, Typeface.BOLD, Color.BLUE));
-        tr.addView(getTextView(0, "Total Absent", Color.WHITE, Typeface.BOLD, Color.BLUE));
-        tr.addView(getTextView(0, "Percentage", Color.WHITE, Typeface.BOLD, Color.BLUE));
+        tr.addView(getTextView(0, "Total Present", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+        tr.addView(getTextView(0, "Total Absent", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+        tr.addView(getTextView(0, "Percentage", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
 
 
         tl.addView(tr, getTblLayoutParams());
@@ -128,8 +128,8 @@ public class ViewAttendence extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < attendencesList.get(0).getList().size(); i++) {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(getLayoutParams());
-            tr.addView(getTextView(i, attendencesList.get(0).getList().get(i).name, Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
-            tr.addView(getTextView(i, String.valueOf(attendencesList.get(0).getList().get(i).getRoll_no()), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+            tr.addView(getTextView(i, attendencesList.get(0).getList().get(i).name, Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            tr.addView(getTextView(i, String.valueOf(attendencesList.get(0).getList().get(i).getRoll_no()),Color.BLACK, Typeface.NORMAL,Color.WHITE));
 
             int totalP=0;
             int totalA=0;
@@ -145,13 +145,13 @@ public class ViewAttendence extends AppCompatActivity implements View.OnClickLis
                 else
                 {
                     totalA = totalA + 1;
-                    tr.addView(getTextView(i, "A", Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this,R.color.colorPink)));
+                    tr.addView(getTextView(i, "A", Color.WHITE, Typeface.NORMAL, Color.RED));
                 }
 
             }
-            tr.addView(getTextView(i, String.valueOf(totalP), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
-            tr.addView(getTextView(i, String.valueOf(totalA), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
-            tr.addView(getTextView(i, String.valueOf(total+"%"), Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+            tr.addView(getTextView(i, String.valueOf(totalP), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            tr.addView(getTextView(i, String.valueOf(totalA), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            tr.addView(getTextView(i, String.valueOf(total+"%"), Color.BLACK, Typeface.NORMAL,Color.WHITE));
             tl.addView(tr, getTblLayoutParams());
         }
     }

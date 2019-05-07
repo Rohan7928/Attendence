@@ -2,75 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     tools:context=".activity_choose"
-    android:background="@color/white"
+    android:background="@drawable/go_bg"
    >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/typography_times"
-        android:gravity="center"
-        android:text="Welcome"
-        android:textColor="@color/black"
-        android:textSize="50dp"
-
-        android:id="@+id/first"/>
-    <LinearLayout
+    <ImageView
         android:layout_width="wrap_content"
+        android:src="@drawable/ic_app_logo"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:layout_margin="16dp"
         android:id="@+id/linear">
+
             <ImageView
                 android:id="@+id/btLogIn"
-                android:layout_width="150dp"
-                android:layout_gravity="center"
-                android:src="@drawable/teacher"
-                android:layout_height="130dp"
-                android:textColor="@color/white"
-                android:textSize="35sp" />
-            <ImageView
-                android:id="@+id/btLogIn2"
-                android:layout_width="150dp"
-                android:layout_height="130dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/student"
-                android:textColor="@color/white"
-                android:textSize="35sp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/button_teacher"
+                />
+        <ImageView
+            android:id="@+id/btLogIn2"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/button_student"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            />
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerInParent="true">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
-            android:text="Teacher"
-            android:layout_marginLeft="60dp"
-            android:textSize="25dp"
-            android:textColor="@color/demo"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
-            android:text="Student"
-            android:layout_marginLeft="80dp"
-            android:textSize="25dp"
-            android:textColor="@color/demo"
-            android:textStyle="bold"
-            />
-
-
-
-    </LinearLayout>
 
 
 

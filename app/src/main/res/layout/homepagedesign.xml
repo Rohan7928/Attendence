@@ -34,7 +34,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
-                    android:padding="2dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
                     android:text="type"
                     android:textColor="@android:color/background_light"
                     android:background="#60000000"
@@ -98,32 +101,33 @@
                 <ImageView
                     android:id="@+id/icheck"
                     android:layout_marginLeft="16dp"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="40sp"
+                    android:padding="4dp"
+                    android:layout_height="40sp"
                     android:src="@drawable/ic_check_white_24dp" />
                 <ImageView
                     android:id="@+id/ichart"
-                    android:layout_width="24dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_height="24dp"
+                    android:layout_width="40sp"
+                    android:padding="4dp"
+                    android:layout_height="40sp"
                     android:src="@drawable/ic_insert_chart_black_24dp" />
                 <ImageView
                     android:id="@+id/iedit"
-                    android:layout_width="24dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_height="24dp"
+                    android:layout_width="40sp"
+                    android:padding="4dp"
+                    android:layout_height="40sp"
                     android:src="@drawable/ic_edit_white_24dp" />
                 <ImageView
                     android:id="@+id/iperson"
-                    android:layout_marginLeft="16dp"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="40sp"
+                    android:padding="4dp"
+                    android:layout_height="40sp"
                     android:src="@drawable/ic_person_black_24dp" />
                 <ImageView
                     android:id="@+id/idelete"
-                    android:layout_width="24dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_height="24dp"
+                    android:layout_width="40sp"
+                    android:padding="4dp"
+                    android:layout_height="40sp"
                     android:onClick="delete"
                     android:src="@drawable/ic_delete_black_24dp"/>
             </LinearLayout>

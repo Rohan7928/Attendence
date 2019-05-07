@@ -30,7 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 public class activity_signup extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     Button btnsubmit, bthome;
-    EditText etfirst,etlast,etemail,etmobile,etfather,etmother,etaddress,etpassword,etconfirmpass;
+    EditText etfirst,etlast,etemail,etmobile,etpassword,etconfirmpass,Department;
 
     ProgressDialog progressDialog;
     FirebaseAuth auth;
@@ -42,15 +42,13 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_signup);
         btnsubmit=findViewById(R.id.btSubmit);
         bthome=findViewById(R.id.bthomepage);
+        Department=findViewById(R.id.et_Department);
         etfirst= findViewById(R.id.etFirstName);
         etlast= findViewById(R.id.etLastName);
         etemail= findViewById(R.id.etEmail);
         etpassword= findViewById(R.id.etPassword);
         etconfirmpass= findViewById(R.id.etConfirmpass);
         etmobile= findViewById(R.id.etMobile);
-        etfather= findViewById(R.id.etFather);
-        etmother= findViewById(R.id.etMother);
-        etaddress= findViewById(R.id.etAddress);
         btnsubmit.setOnClickListener(this);
         bthome.setOnClickListener(this);
         fb = FirebaseFirestore.getInstance();
@@ -87,10 +85,8 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
         final String pass=etpassword.getText().toString().trim();
         String confirmpass=etconfirmpass.getText().toString().trim();
         final String phone=etmobile.getText().toString().trim();
-        final String father=etfather.getText().toString().trim();
-        final String mother=etmother.getText().toString().trim();
-        final String address=etaddress.getText().toString().trim();
-        if(fname.isEmpty() || lname.isEmpty() ||email.isEmpty()||pass.isEmpty()||confirmpass.isEmpty() ||phone.isEmpty()||father.isEmpty()||mother.isEmpty()||address.isEmpty())
+        final String department=Department.getText().toString().trim();
+        if(fname.isEmpty() || lname.isEmpty() ||email.isEmpty()||pass.isEmpty()||confirmpass.isEmpty() ||phone.isEmpty())
         {
             Util.toast(this,"Fill all the Requirments");
         }
@@ -111,7 +107,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(activity_signup.this, "User Registered", Toast.LENGTH_SHORT).show();
-                    savedata(fname,lname,email,pass,phone,father,mother,address);
+                    savedata(fname,lname,email,phone,department);
                 } else {
                     Toast.makeText(activity_signup.this, "User not Registered", Toast.LENGTH_SHORT).show();
                 }
@@ -124,11 +120,11 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-    private void savedata(String fname, String lname, String email, String pass, String phone, String father, String mother, String address) {
+    private void savedata(String fname, String lname, String email, String phone, String department) {
     progressDialog.show();
-        UserDataR user=new UserDataR(fname, lname, email,pass,phone,father,mother,address);
-        fb.collection("Data").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("user")
-         .document(email).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+        UserDataR user=new UserDataR(fname, lname, email,phone,"Teacher",department);
+        fb.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+         .set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
      @Override
      public void onComplete(@NonNull Task<Void> task) {
          if(task.isSuccessful())

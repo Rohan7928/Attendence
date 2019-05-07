@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class activity_navigation extends AppCompatActivity implements StudentAdapter.doAlert {
+public class activity_navigation extends AppCompatActivity implements StudentAdapter.doAlert, View.OnClickListener {
   DrawerLayout drawerLayout;
   RecyclerView recyclerView;
   StudentAdapter adapter;
@@ -92,32 +93,7 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId())
                 {
-                    case R.id.home_page:
-                    {
-                        startActivity(new Intent(getApplicationContext(),activity_navigation.class));
-                      // replaceFragment(new activity_fragment());
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }
-                    case R.id.tstatus:
-                    {
-                        startActivity(new Intent(getApplicationContext(),activity_viewstatus.class));
-                      // replaceFragment(new activity_fragment());
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }
-                   case R.id.change_pass:
-                    {
-                        startActivity(new Intent(getApplicationContext(),Change_password.class));
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }case R.id.log_out:
-                    {
-                        auth.signOut();
-                        startActivity(new Intent(getApplicationContext(),activity_login.class));
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }
+
                 }
                 return true;
             }
@@ -128,7 +104,51 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
                 startActivity(new Intent(activity_navigation.this,activity_cardview.class));
             }
         });
+
+
+        View view=navigationView.getHeaderView(0);
+        LinearLayout home=view.findViewById(R.id.header_home);
+        LinearLayout status=view.findViewById(R.id.header_status);
+        LinearLayout changeassword=view.findViewById(R.id.header_changepass);
+        LinearLayout logout=view.findViewById(R.id.header_logout);
+
+        home.setOnClickListener(this);
+        status.setOnClickListener(this);
+        changeassword.setOnClickListener(this);
+        logout.setOnClickListener(this);
+
+         }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.header_home:
+            {
+                startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+                drawerLayout.closeDrawer(Gravity.START);
+            }
+            case R.id.header_status:
+            {
+                startActivity(new Intent(getApplicationContext(),activity_viewstatus.class));
+                drawerLayout.closeDrawer(Gravity.START);
+                break;
+            }
+            case R.id.header_changepass:
+            {
+                startActivity(new Intent(getApplicationContext(),Change_password.class));
+                drawerLayout.closeDrawer(Gravity.START);
+                break;
+            }case R.id.header_logout:
+        {
+            auth.signOut();
+            startActivity(new Intent(getApplicationContext(),activity_login.class));
+            drawerLayout.closeDrawer(Gravity.START);
+            break;
+        }
+        }
+
     }
+
     private void getsavedata() {
         db.collection("Data").document(FirebaseAuth.getInstance().getUid()).collection("Subjects").whereEqualTo("email",auth.getCurrentUser().getEmail())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -178,12 +198,6 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
    dialog=builder.create();
    dialog.setCancelable(false);
    dialog.setCanceledOnTouchOutside(false);
-    }
-
-    private void replaceFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container_frame, fragment);
-        transaction.commit();
     }
     @Override
     public void onAlert(final int i, final String s1, final String s) {
@@ -238,4 +252,6 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
                     }
                 });
     }
+
+
 }

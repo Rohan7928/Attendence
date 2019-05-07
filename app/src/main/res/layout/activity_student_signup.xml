@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".student_signup"
+    android:orientation="vertical"
     android:background="@drawable/backg"
     android:fillViewport="true">
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:padding="8dp"
+        android:background="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        >
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -20,60 +24,40 @@
             />
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/supercreative"
-            android:gravity="center"
-            android:layout_marginTop="40dp"
-            android:text="Registration"
+            android:text="STUDENT SIGN UP"
+            android:textSize="18dp"
             android:textColor="@color/white"
-            android:textSize="45sp"
-            android:textStyle="italic"
-            android:id="@+id/reg"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:fontFamily="@font/supercreative"
-            android:layout_marginLeft="90dp"
-            android:layout_below="@+id/reg"
-            android:text="Welcome Dear"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_height="wrap_content" />
+        
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/go_bg"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/inputView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/reg"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
             android:orientation="vertical"
-            android:padding="30dp">
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/mario_1"
-                android:layout_marginLeft="130dp"
-                app:civ_border_width="1dp"
-                app:civ_border_color="#FF000000"/>
+            android:padding="8dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/black">
 
                 <EditText
-                    android:backgroundTint="@color/white"
                     android:id="@+id/etFirstName"
-                    android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="First Name" >
+                    android:backgroundTint="@color/black"
+                    android:hint="First Name"
+                    android:textColor="@color/black">
 
                 </EditText>
             </android.support.design.widget.TextInputLayout>
@@ -82,197 +66,209 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/black">
+
                 <EditText
-                    android:backgroundTint="@color/white"
                     android:id="@+id/etLastName"
-                    android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Last Name" />
+                    android:backgroundTint="@color/black"
+                    android:hint="Last Name"
+                    android:textColor="@color/black" />
             </android.support.design.widget.TextInputLayout>
 
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/black">
 
                 <EditText
                     android:id="@+id/etEmail"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email" />
+                    android:backgroundTint="@color/black"
+                    android:hint="Email"
+                    android:textColor="@color/black" />
             </android.support.design.widget.TextInputLayout>
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal">
-               <android.support.design.widget.TextInputLayout
-                   android:layout_width="160dp"
-                   android:layout_height="wrap_content"
-                   android:textColorHint="@color/white">
 
-                   <EditText
-                       android:id="@+id/etPassword"
-                       android:backgroundTint="@color/white"
-                       android:textColor="@color/black"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:hint="Password"
-                       android:gravity="center"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/black">
 
-               </android.support.design.widget.TextInputLayout>
-               <android.support.design.widget.TextInputLayout
-                   android:layout_width="175dp"
-                   android:layout_marginLeft="10dp"
-                   android:layout_height="wrap_content"
-                   android:textColorHint="@color/white">
-
-                   <EditText
-                       android:id="@+id/etConfirmpass"
-                       android:textColor="@color/black"
-                       android:backgroundTint="@color/white"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:hint="Confirm Password"
-                       android:gravity="center"/>
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:gravity="center"
+                        android:hint="Password"
+                        android:textColor="@color/black" />
 
 
-               </android.support.design.widget.TextInputLayout>
+                </android.support.design.widget.TextInputLayout>
 
-           </LinearLayout>
- <LinearLayout
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:orientation="horizontal">
-     <android.support.design.widget.TextInputLayout
-         android:layout_width="50dp"
-         android:layout_height="wrap_content"
-         android:textColorHint="@color/white">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColorHint="@color/black">
 
-         <EditText
-             android:id="@+id/etsem"
-             android:textColor="@color/black"
-             android:backgroundTint="@color/white"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:hint="Sem"
-             android:gravity="center"/>
+                    <EditText
+                        android:id="@+id/etConfirmpass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:gravity="center"
+                        android:hint="Confirm Password"
+                        android:textColor="@color/black" />
 
 
-     </android.support.design.widget.TextInputLayout>
+                </android.support.design.widget.TextInputLayout>
 
-     <android.support.design.widget.TextInputLayout
-         android:layout_width="145dp"
-         android:layout_height="wrap_content"
-         android:textColorHint="@color/white">
+            </LinearLayout>
 
-         <EditText
-             android:id="@+id/etDepartment"
-             android:backgroundTint="@color/white"
-             android:textColor="@color/black"
-             android:layout_marginLeft="5dp"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:hint="Department"
-             android:gravity="center"/>
-     </android.support.design.widget.TextInputLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-     <android.support.design.widget.TextInputLayout
-         android:layout_width="140dp"
-         android:layout_marginLeft="10dp"
-         android:layout_height="wrap_content"
-         android:textColorHint="@color/white">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/black">
 
-         <EditText
-             android:id="@+id/etclass"
-             android:textColor="@color/black"
-             android:backgroundTint="@color/white"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:hint="Class"
-             android:gravity="center"/>
+                    <EditText
+                        android:id="@+id/etsem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:gravity="center"
+                        android:hint="Sem"
+                        android:textColor="@color/black" />
 
 
-     </android.support.design.widget.TextInputLayout>
+                </android.support.design.widget.TextInputLayout>
 
- </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/black">
+
+                    <EditText
+                        android:id="@+id/etDepartment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:backgroundTint="@color/black"
+                        android:gravity="center"
+                        android:hint="Department"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColorHint="@color/black">
+
+                    <EditText
+                        android:id="@+id/etclass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:gravity="center"
+                        android:hint="Class"
+                        android:textColor="@color/black" />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/black">
 
                 <EditText
                     android:id="@+id/etFather"
                     android:layout_width="match_parent"
-                    android:textColor="@color/black"
-                    android:backgroundTint="@color/white"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:hint="Father Name" />
+                    android:backgroundTint="@color/black"
+                    android:hint="Father Name"
+                    android:textColor="@color/black" />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/black">
 
                 <EditText
                     android:id="@+id/etMother"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
                     android:layout_marginTop="10dp"
-                    android:hint="Mother Name" />
+                    android:backgroundTint="@color/black"
+                    android:hint="Mother Name"
+                    android:textColor="@color/black" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/black">
+
                 <EditText
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/etAddress"
-                    android:layout_marginTop="10dp"
-                    android:hint="Address"
-                    android:textSize="17dp" />
-
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/white">
-                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/etMobile"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/black"
+                    android:hint="Address"
                     android:textColor="@color/black"
-                    android:hint="Mobile No."
                     android:textSize="17dp" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black">
+
+                <EditText
+                    android:id="@+id/etMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/black"
+                    android:hint="Mobile No."
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
             <Button
                 android:id="@+id/btSubmit"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/roundbutton"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/roundbutton"
                 android:fontFamily="@font/supercreative"
                 android:hint="Submit"
-                android:layout_gravity="center"
                 android:textColorHint="@color/black"
                 android:textSize="25dp" />
 
         </LinearLayout>
 
     </RelativeLayout>
-</ScrollView>
+</LinearLayout>

@@ -1,7 +1,7 @@
 package com.example.attendence;
 
 class UserDataR {
-    private String fname;
+
 
     public String getFname() {
         return fname;
@@ -27,13 +27,6 @@ class UserDataR {
         this.email = email;
     }
 
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
 
     public String getPhone() {
         return phone;
@@ -69,11 +62,25 @@ class UserDataR {
 
     private String lname;
     private String email;
-    private String pass;
     private String phone;
     private String father;
+    private String fname;
+    private String type;
     private String mother;
     private String address;
+    private String sem;
+    private String department;
+    private String clas;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+
 
     public String getSem() {
         return sem;
@@ -99,25 +106,12 @@ class UserDataR {
         this.clas = clas;
     }
 
-    private String sem;
-    private String department;
-    private String clas;
-    public UserDataR(String fname, String lname, String email, String pass, String phone, String father, String mother, String address) {
-        this.fname=fname;
-        this.lname=lname;
-        this.email=email;
-        this.pass=pass;
-        this.phone=phone;
-        this.father=father;
-        this.mother=mother;
-        this.address=address;
 
-    }
-    public UserDataR(String fname, String lname, String email, String pass, String phone, String father, String mother, String address, String sem, String department, String clas) {
+
+    public UserDataR(String fname, String lname, String email, String pass, String phone, String father, String mother, String address, String sem, String department, String clas,String type) {
     this.fname=fname;
     this.lname=lname;
     this.email=email;
-    this.pass=pass;
     this.phone=phone;
     this.father=father;
     this.mother=mother;
@@ -125,8 +119,14 @@ class UserDataR {
     this.sem=sem;
     this.department=department;
     this.clas=clas;
+    this.type=type;
     }
-    public UserDataR(){
-
+    public UserDataR(String fname,String lname,String email,String phone,String type,String department){
+        this.fname=fname;
+        this.lname=lname;
+        this.email=email;
+        this.phone=phone;
+        this.department=department;
+        this.type=type;
     }
 }

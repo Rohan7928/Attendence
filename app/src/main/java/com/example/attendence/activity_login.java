@@ -31,8 +31,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class activity_login extends AppCompatActivity implements View.OnClickListener {
     TextView forgot;
     EditText etUser, etPassword;
-    Button btLogin, bthome,btregister;
-    ImageView checkUser, checkPassword;
+    ImageView btLogin;
+    Button  bthome;
+    TextView btregister;
     DataBaseHelper helper;
     ProgressDialog progressDialog;
     FirebaseAuth auth;
@@ -45,12 +46,10 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_login);
         etUser = findViewById(R.id.etUser);
         etPassword = findViewById(R.id.etPassword);
-       forgot=findViewById(R.id.forgot_pass);
+       forgot=findViewById(R.id.forgotpass);
         btLogin =  findViewById(R.id.btLogin);
         bthome =  findViewById(R.id.bthome);
         btregister =  findViewById(R.id.btregister);
-        checkUser = findViewById(R.id.checkuser);
-        checkPassword = findViewById(R.id.checkpassword);
         btLogin.setOnClickListener(this);
         bthome.setOnClickListener(this);
         btregister.setOnClickListener(this);
@@ -61,35 +60,6 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         db=FirebaseFirestore.getInstance();
         helper = new DataBaseHelper(this);
 
-        etUser.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (etUser.getText().length() > 4)
-                    checkUser.setVisibility(View.VISIBLE);
-                else
-                    checkUser.setVisibility(View.GONE);
-            }
-        });
-        etPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (etPassword.getText().length() > 4)
-                    checkPassword.setVisibility(View.VISIBLE);
-                else
-                    checkPassword.setVisibility(View.GONE);
-            }
-        });
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +108,6 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }
 
     private void dologin(String username, String password) {
-        progressDialog.show();
                auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
