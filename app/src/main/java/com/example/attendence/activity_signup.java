@@ -138,14 +138,14 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
               startActivity(new Intent(getApplicationContext(),activity_navigation.class));
               finish();
          }
-         else
-         {
-             progressDialog.dismiss();
-             Toast.makeText(activity_signup.this, "Sorry", Toast.LENGTH_SHORT).show();
-
-         }
      }
- });
+ }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(activity_signup.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+               finish();
+            }
+        });
     }
 
     @Override

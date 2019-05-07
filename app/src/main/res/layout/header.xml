@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:background="@drawable/backg">
    <ImageView
+       android:layout_marginTop="10dp"
        android:layout_width="match_parent"
        android:layout_height="100dp"
        android:src="@drawable/atten" />
@@ -14,6 +15,7 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="Attendance Register"
+       android:layout_gravity="center"
        android:textColor="#fff"
        android:textSize="20dp"
        android:textStyle="bold"
@@ -22,9 +24,10 @@
    <TextView
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="By Anonymous"
+       android:text="welcome"
        android:layout_marginLeft="2dp"
        android:textColor="#fff"
+       android:layout_gravity="center"
        android:textSize="20dp"
 
        />

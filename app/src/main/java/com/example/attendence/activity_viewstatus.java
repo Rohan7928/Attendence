@@ -70,7 +70,6 @@ public class activity_viewstatus extends AppCompatActivity {
                             Teacherstatus teacherstatus = document.toObject(Teacherstatus.class);
                             viewStatusAdapter.addData(teacherstatus, document.getId());
                             viewStatusAdapter.notifyDataSetChanged();
-
                             //Log.e("subject ", subjects.sub_name);
                         }
                     }

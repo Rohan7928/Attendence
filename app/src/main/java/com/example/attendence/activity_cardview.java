@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.renderscript.Float4;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -43,7 +44,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
     TextView sem_num,date,Time;
     EditText sub_name, sub_divison, sub_dept,rollfrom, rollto;
     RadioGroup radioGroup;
-    Button btn_add;
+    FloatingActionButton btn_add;
     RadioButton lecture, lab,seminar,workshop,exam;
     FirebaseAuth auth;
     FirebaseFirestore db;
@@ -114,6 +115,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
             sub_divison.setText(subjects.sub_division);
             rollfrom.setText(String.valueOf(subjects.rollfrom));
             rollto.setText(String.valueOf(subjects.rollto));
+            date.setText(String.valueOf(subjects.current));
             String type = subjects.getType();
             if (type.equals("Lecture")) {
                 lecture.setChecked(true);
@@ -170,10 +172,15 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
                     rollto.setError("Enter a number");
                     Toast.makeText(activity_cardview.this, "Enter Roll to", Toast.LENGTH_SHORT).show();
                 }
-                //if (roll_from > roll_to) {
-                //  rollfrom.setError("Starting Number should be greater");
-                //Toast.makeText(activity_cardview.this, "Starting Number should be greater", Toast.LENGTH_SHORT).show();
-                //}
+                if (TextUtils.isEmpty(String.valueOf(current)))
+                {
+                    date.setError("Enter date");
+                    Toast.makeText(activity_cardview.this, "Enter Date", Toast.LENGTH_SHORT).show();
+                }
+                if (roll_from >= roll_to) {
+                  rollfrom.setError("Starting Number should be greater");
+                Toast.makeText(activity_cardview.this, "Starting Number should be greater", Toast.LENGTH_SHORT).show();
+                }
 
                 if (subjects == null) {
                     storedata(email,semester, subname, subdept, subdivision, type, roll_from, roll_to, current);
@@ -203,6 +210,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
                     public void onFailure(@NonNull Exception e) {
                         progressDialog.hide();
                         Toast.makeText(activity_cardview.this, "Error", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 }).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -211,6 +219,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
                     Toast.makeText(activity_cardview.this, "Subject", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(activity_cardview.this, activity_navigation.class));
                     progressDialog.dismiss();
+                    finish();
                 }
             }
         });
@@ -231,6 +240,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
                 public void onFailure(@NonNull Exception e) {
                     progressDialog.hide();
                     Toast.makeText(activity_cardview.this, "Error", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -238,8 +248,8 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
                     if (task.isSuccessful()) {
                         Toast.makeText(activity_cardview.this, "Subject", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(activity_cardview.this, activity_navigation.class));
-
                         progressDialog.dismiss();
+                        finish();
                     }
                 }
             });

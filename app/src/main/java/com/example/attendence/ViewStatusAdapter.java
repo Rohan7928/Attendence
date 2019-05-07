@@ -56,16 +56,6 @@ class ViewStatusAdapter extends RecyclerView.Adapter<ViewStatusAdapter.Myholder>
             }
         });
 
-
-        myholder.ivDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-            }
-        });
-
     }
 
     @Override
@@ -88,7 +78,7 @@ class ViewStatusAdapter extends RecyclerView.Adapter<ViewStatusAdapter.Myholder>
             txttime=itemView.findViewById(R.id.txt_time);
             txtinformation=itemView.findViewById(R.id.txt_info);
             photo=itemView.findViewById(R.id.Image_photo);
-            ivDelete = itemView.findViewById(R.id.ic_delete);
+           // ivDelete = itemView.findViewById(R.id.ic_delete);
         }
     }
 }

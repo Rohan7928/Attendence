@@ -130,11 +130,7 @@ public class activity_status extends AppCompatActivity {
                                     status.setImagestatus(uri.toString());
 
                                     final DocumentReference ref = db.collection("Data").document();
-
-
-
-
-                                            ref.set(status).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    ref.set(status).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     progressDialog.show();

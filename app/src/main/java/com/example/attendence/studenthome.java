@@ -88,18 +88,24 @@ public class studenthome extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId())
                 {
-                    case R.id.home_page:
+                    case R.id.homepage:
                     {
                         startActivity(new Intent(getApplicationContext(),studenthome.class));
                         drawerLayout.closeDrawer(Gravity.START);
                         break;
                     }
-                    case R.id.change_pass:
+                    case R.id.attendance:
                     {
-                      //  startActivity(new Intent(getApplicationContext(),Change_password.class));
+                       // startActivity(new Intent(getApplicationContext(),ViewAttendence.class));
                         drawerLayout.closeDrawer(Gravity.START);
                         break;
-                    }case R.id.log_out:
+                    }
+                    case R.id.changepass:
+                    {
+                      startActivity(new Intent(getApplicationContext(),activity_studentpassword.class));
+                        drawerLayout.closeDrawer(Gravity.START);
+                        break;
+                    }case R.id.logout:
                     {
                         auth.signOut();
                         startActivity(new Intent(studenthome.this,student_login.class));

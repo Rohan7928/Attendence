@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -40,7 +41,7 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
   NavigationView navigationView;
   ImageView imageView;
   TextView status;
-  Button add;
+  FloatingActionButton add;
   FirebaseAuth auth;
   FirebaseFirestore db;
   AlertDialog dialog;

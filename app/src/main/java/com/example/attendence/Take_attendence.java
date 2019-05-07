@@ -2,6 +2,7 @@ package com.example.attendence;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,8 +35,8 @@ public class Take_attendence extends AppCompatActivity {
     TextView date;
     DrawerLayout drawerLayout;
     ImageView uncheck , checkall;
-    Button btnattend,drawer;
-
+    Button drawer;
+   FloatingActionButton btnattend;
     FirebaseAuth auth;
     FirebaseFirestore db;
 

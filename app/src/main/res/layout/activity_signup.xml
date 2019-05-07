@@ -57,11 +57,11 @@
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/mario_1"
             android:layout_marginLeft="130dp"
-            app:civ_border_width="10dp"
+            app:civ_border_width="1dp"
             app:civ_border_color="#FF000000"/>
 
         <android.support.design.widget.TextInputLayout
@@ -72,10 +72,9 @@
             <EditText
                 android:backgroundTint="@color/white"
                 android:id="@+id/etFirstName"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/scriptmtbold"
                 android:hint="First Name" >
 
             </EditText>
@@ -89,11 +88,9 @@
             <EditText
                 android:backgroundTint="@color/white"
                 android:id="@+id/etLastName"
-                android:textColor="@color/white"
-
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/scriptmtbold"
                 android:hint="Last Name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -120,11 +117,9 @@
             <EditText
                 android:id="@+id/etPassword"
                 android:backgroundTint="@color/white"
-                android:textColor="@color/white"
-
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/scriptmtbold"
                 android:hint="Password" />
 
 
@@ -136,11 +131,10 @@
 
             <EditText
                 android:id="@+id/etConfirmpass"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:backgroundTint="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/scriptmtbold"
                 android:hint="Confirm Password" />
 
 
@@ -154,11 +148,10 @@
             <EditText
                 android:id="@+id/etFather"
                 android:layout_width="match_parent"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:backgroundTint="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/scriptmtbold"
                 android:hint="Father Name" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
@@ -173,7 +166,6 @@
                 android:backgroundTint="@color/white"
                 android:textColor="@color/white"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/scriptmtbold"
                 android:hint="Mother Name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -183,12 +175,11 @@
             android:textColorHint="@color/white">
             <EditText
                 android:backgroundTint="@color/white"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAddress"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/scripttb"
                 android:hint="Address"
                 android:textSize="17dp" />
 
@@ -201,10 +192,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/scripttb"
                 android:id="@+id/etMobile"
                 android:backgroundTint="@color/white"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:hint="Mobile No."
                 android:textSize="17dp" />
 

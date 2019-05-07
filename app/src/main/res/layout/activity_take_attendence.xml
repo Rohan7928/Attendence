@@ -64,7 +64,7 @@
                 android:elevation="25dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textColorHint="@color/black"
+                android:textColorHint="#6000"
                 android:textColor="@color/black"
                 android:background="@color/white"
                 android:layout_marginLeft="20dp"
@@ -124,19 +124,19 @@
             tools:layout_editor_absoluteY="8dp" />
 
     </LinearLayout>
-    <Button
 
-        android:id="@+id/btn_attend"
-        android:layout_width="70dp"
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_gravity="end"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
         android:layout_alignParentRight="true"
-        android:background="@drawable/roundbutton"
-        android:drawableStart="@drawable/add"
-        android:drawableLeft="@drawable/add"
-        android:padding="14dp" />
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/btn_attend"
+        android:src="@drawable/ic_save"
+        />
+
+
+
 
 </RelativeLayout>

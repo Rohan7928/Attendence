@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="16dp">
     <android.support.v7.widget.CardView
         android:id="@+id/card"
         android:layout_width="wrap_content"
@@ -26,14 +26,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:padding="2dp"
                     android:text="Email"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textColor="@color/demo"
+                    android:textSize="16sp"/>
                 <TextView
                     android:id="@+id/txt_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginRight="5dp"
                     android:padding="2dp"
                     android:text="Time"
                     android:textColor="@android:color/background_light"
@@ -48,11 +49,11 @@
                 android:orientation="vertical">
                 <ImageView
                     android:id="@+id/Image_photo"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_gravity="center"
                     android:layout_centerInParent="true"
                     android:layout_height="200dp"
-                    android:scaleType="fitXY"
-
+                    android:scaleType="centerCrop"
                     android:src="@drawable/mario_1" />
                 <TextView
                     android:id="@+id/txt_info"
@@ -60,17 +61,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="Information"
+                    android:textSize="12sp"
                     android:textColor="@color/black"
                     android:padding="8dp"></TextView>
 
-
-                <ImageView
-                    android:id="@+id/ic_delete"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="end"
-                    android:src="@drawable/ic_delete_black_24dp"
-                    android:tint="@color/black"/>
             </LinearLayout>
 
         </LinearLayout>

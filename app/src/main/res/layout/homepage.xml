@@ -50,18 +50,5 @@
         android:id="@+id/contai_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
-    <Button
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/add"
-        android:background="@drawable/roundbutton"
-        android:drawableStart="@drawable/add"
-        android:drawableLeft="@drawable/add"
-        android:drawablePadding="50dp"
-        android:padding="10dp"
-        />
+
 </RelativeLayout>

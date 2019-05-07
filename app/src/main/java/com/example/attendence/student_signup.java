@@ -127,13 +127,14 @@ public class student_signup extends AppCompatActivity implements View.OnClickLis
                     progressDialog.dismiss();
                     Toast.makeText(student_signup.this, "Record", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(),studenthome.class));
+                    finish();
                 }
-                else
-                {
-                    progressDialog.dismiss();
-                    Toast.makeText(student_signup.this, "Sorry", Toast.LENGTH_SHORT).show();
-
-                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(student_signup.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
