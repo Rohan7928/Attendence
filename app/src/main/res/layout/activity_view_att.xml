@@ -18,7 +18,7 @@ android:layout_height="wrap_content"
     android:background="@drawable/ic_arrow_back_black_24dp"
     android:drawableStart="@drawable/backg"
     android:drawableLeft="@drawable/backg"
-    android:id="@+id/bthome"
+    android:id="@+id/btnhome"
     />
 <TextView
     android:layout_width="match_parent"

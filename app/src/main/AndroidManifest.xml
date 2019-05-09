@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_studentpassword"></activity>
+        <activity android:name=".SubjectsActivity"></activity>
+        <activity android:name=".activity_studentpassword" />
         <activity android:name=".activity_viewstatus" />
         <activity android:name=".activity_status" />
         <activity android:name=".studenthome" />
@@ -24,7 +25,6 @@
         <activity android:name=".Update" />
         <activity android:name=".Take_attendence" />
         <activity android:name=".activity_cardview" />
-        <activity android:name=".AddSubject" />
         <activity android:name=".activity_navigation" />
         <activity android:name=".activity_signup" />
         <activity android:name=".activity_login" />

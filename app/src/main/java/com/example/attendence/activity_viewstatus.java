@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class activity_viewstatus extends AppCompatActivity {
     TextView txtstatus;
     FirebaseAuth auth;
     FirebaseFirestore db;
+    Button back;
     FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class activity_viewstatus extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         txtstatus=findViewById(R.id.txt_status);
         db = FirebaseFirestore.getInstance();
+        back=findViewById(R.id.btnviewstatus);
         floatingActionButton=findViewById(R.id.fab_edit);
         viewStatusAdapter=new   ViewStatusAdapter(this);
         recyclerView = findViewById(R.id.Recycler_view);
@@ -42,6 +45,12 @@ public class activity_viewstatus extends AppCompatActivity {
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(viewStatusAdapter);
         getsavedata();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+            }
+        });
     floatingActionButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

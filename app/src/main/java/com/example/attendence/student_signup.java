@@ -19,6 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class student_signup extends AppCompatActivity implements View.OnClickListener {
     Button btnsubmit,bthome;
     EditText etfirst,etlast,etemail,etmobile,etfather,etmother,etaddress,etpassword,etconfirmpass;
@@ -69,7 +72,7 @@ public class student_signup extends AppCompatActivity implements View.OnClickLis
         Intent intent = new Intent(this, activity_choose.class);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
-    }
+        finish();}
 
     private void Submit() {
         final String fname=etfirst.getText().toString().trim();
@@ -91,13 +94,20 @@ public class student_signup extends AppCompatActivity implements View.OnClickLis
         }
         else
         {
-            if(pass.equals(confirmpass)) {
+            if (isValidPassword(etpassword.getText().toString().trim())) {
 
-            }
-            else
+                if(pass.equals(confirmpass)) {
+
+                }
+                else
+                {
+                    Toast.makeText(this, "Password doesn't match", Toast.LENGTH_SHORT).show();
+                }
+            } else
             {
-                Toast.makeText(this, "Password doesn't match", Toast.LENGTH_SHORT).show();
+                etpassword.setError("Your password contain special symbol,One letter in capitals and numeric also");
             }
+
         }
         auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -118,8 +128,7 @@ public class student_signup extends AppCompatActivity implements View.OnClickLis
     }
     private void savedata(String fname, String lname, String email, String pass, String phone, String father, String mother, String address, String sem, String department, String clas) {
         UserDataR user=new UserDataR(fname, lname, email,pass,phone,father,mother,address,sem,department,clas,"Student");
-        fb.collection("StudentData").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("user")
-                .document(email).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+        fb.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful())
@@ -138,5 +147,20 @@ public class student_signup extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
+    public boolean isValidPassword(final String password) {
+
+        Pattern pattern;
+        Matcher matcher;
+
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+
+    }
+
+
 }
 

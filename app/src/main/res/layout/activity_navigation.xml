@@ -16,7 +16,6 @@
         app:headerLayout="@layout/header"
         app:itemTextColor="@color/colorPrimaryDark"
         android:id="@+id/navigation"
-        android:fitsSystemWindows="true"
         android:layout_gravity="start"
         >
 

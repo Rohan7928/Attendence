@@ -1,8 +1,12 @@
 package com.example.attendence;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 class UserDataR {
 
+public UserDataR(){
 
+}
     public String getFname() {
         return fname;
     }
@@ -71,6 +75,15 @@ class UserDataR {
     private String sem;
     private String department;
     private String clas;
+    private String uid;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public String getType() {
         return type;
@@ -120,6 +133,8 @@ class UserDataR {
     this.department=department;
     this.clas=clas;
     this.type=type;
+    this.uid= FirebaseAuth.getInstance().getUid();
+
     }
     public UserDataR(String fname,String lname,String email,String phone,String type,String department){
         this.fname=fname;
@@ -128,5 +143,6 @@ class UserDataR {
         this.phone=phone;
         this.department=department;
         this.type=type;
+        this.uid= FirebaseAuth.getInstance().getUid();
     }
 }

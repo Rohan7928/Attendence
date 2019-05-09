@@ -16,6 +16,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,6 +47,7 @@ public class activity_status extends AppCompatActivity {
    ImageView isend,icamera,setimage;
    FirebaseAuth auth;
    FirebaseFirestore db;
+   Button back;
     private StorageReference storageReference;
     ProgressDialog progressDialog;
     private Uri capImageURI;
@@ -64,11 +66,18 @@ public class activity_status extends AppCompatActivity {
         icamera = findViewById(R.id.icamera);
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        back=findViewById(R.id.btnstatus);
         storageReference = FirebaseStorage.getInstance().getReference().child("Database").child("Users");
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm");
         String strDate = mdformat.format(calendar.getTime());
         txtcurrent_time.setText(strDate);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),activity_viewstatus.class));
+            }
+        });
         isend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

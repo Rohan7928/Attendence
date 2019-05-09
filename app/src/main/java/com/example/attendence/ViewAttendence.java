@@ -1,5 +1,6 @@
 package com.example.attendence;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -31,16 +33,21 @@ public class ViewAttendence extends AppCompatActivity implements View.OnClickLis
 
     Subjects subject;
     String subNodeId;
-
+    Button bthome;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_att);
-
+         bthome=findViewById(R.id.btnhome);
         subject = new Gson().fromJson(getIntent().getStringExtra("list"), Subjects.class);
         subNodeId = getIntent().getStringExtra("id");
         getData();
-
+        bthome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+            }
+        });
     }
 
     private void getData() {

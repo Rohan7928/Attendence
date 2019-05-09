@@ -28,6 +28,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class activity_signup extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     Button btnsubmit, bthome;
     EditText etfirst,etlast,etemail,etmobile,etpassword,etconfirmpass,Department;
@@ -74,8 +77,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
     private void Home() {
         Intent intent = new Intent(this, activity_choose.class);
         startActivity(intent);
-        Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
-
+        finish();
     }
 
     private void Submit() {
@@ -91,7 +93,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
             Util.toast(this,"Fill all the Requirments");
         }
         else
-        {
+        {   if (isValidPassword(etpassword.getText().toString().trim())) {
 
             if(pass.equals(confirmpass)) {
 
@@ -100,6 +102,12 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
             {
                 Toast.makeText(this, "Password doesn't match", Toast.LENGTH_SHORT).show();
             }
+
+        } else
+            {
+            etpassword.setError("Your password contain special symbol,One letter in capitals and numeric also");
+            }
+
             }
 
         auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -131,7 +139,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
          {
            progressDialog.dismiss();
              Toast.makeText(activity_signup.this, "Record", Toast.LENGTH_SHORT).show();
-              startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+              startActivity(new Intent(getApplicationContext(),activity_login.class));
               finish();
          }
      }
@@ -142,6 +150,19 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
                finish();
             }
         });
+    }
+    public boolean isValidPassword(final String password) {
+
+        Pattern pattern;
+        Matcher matcher;
+
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+
     }
 
     @Override

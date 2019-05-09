@@ -88,16 +88,7 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
                 }
             }
         });
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId())
-                {
 
-                }
-                return true;
-            }
-        });
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +141,7 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
     }
 
     private void getsavedata() {
-        db.collection("Data").document(FirebaseAuth.getInstance().getUid()).collection("Subjects").whereEqualTo("email",auth.getCurrentUser().getEmail())
+        db.collection("Data").document(FirebaseAuth.getInstance().getUid()).collection("Subjects")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

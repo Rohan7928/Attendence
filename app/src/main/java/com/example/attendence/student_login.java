@@ -24,13 +24,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class student_login extends AppCompatActivity implements View.OnClickListener {
     TextView forgot;
     EditText etUser, etPassword;
     ImageView btLogin;
     Button  bthome;
     TextView btregister;
-    DataBaseHelper helper;
     ProgressDialog progressDialog;
     FirebaseAuth auth;
     FirebaseFirestore db;
@@ -90,39 +92,61 @@ public class student_login extends AppCompatActivity implements View.OnClickList
 
         String username = etUser.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
-        if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
-            etUser.setError("Enter valid email");
-            return;
-        }
+
         if ( password.isEmpty()) {
             Util.toast(this, "Not valid");
             return;
-        } else {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
+            etUser.setError("Enter valid email");
+            return;
+        }
+        else if (!isValidPassword(etPassword.getText().toString().trim())) {
+            etPassword.setError("Your password contain special symbol,One letter in capitals and numeric also");
+
+        }
+        else
+
+        {
             dologin(username, password);
         }
     }
     private void dologin(String username, String password) {
-        progressDialog.show();
-
         auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     progressDialog.dismiss();
                     startActivity(new Intent(getApplicationContext(), studenthome.class));
                     finish();
+                }
+                else
+                {
+                    Toast.makeText(student_login.this,"Email & Password doesn't match", Toast.LENGTH_SHORT);
+
                 }
             }
 
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-             progressDialog.dismiss();
-             Toast.makeText(student_login.this, e.getMessage(), Toast.LENGTH_SHORT);
+                progressDialog.dismiss();
+                Toast.makeText(student_login.this, e.getMessage(), Toast.LENGTH_SHORT);
             }
         });
+    }
+        public boolean isValidPassword(final String password) {
 
+            Pattern pattern;
+            Matcher matcher;
+
+            final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+
+            pattern = Pattern.compile(PASSWORD_PATTERN);
+            matcher = pattern.matcher(password);
+
+            return matcher.matches();
+
+        }
 
 
 
@@ -168,7 +192,6 @@ public class student_login extends AppCompatActivity implements View.OnClickList
         //startActivity(intent);
         //pref.setIsLlogin(true);*/
 
-    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {

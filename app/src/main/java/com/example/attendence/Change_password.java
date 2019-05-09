@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Change_password extends AppCompatActivity {
     EditText Email;
-    ImageView verify;
+    Button verify,btnchange;
     FirebaseAuth auth;
     FirebaseFirestore db;
     ProgressDialog progressDialog;
@@ -38,11 +38,18 @@ public class Change_password extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
         Email = findViewById(R.id.Email);
         verify = findViewById(R.id.btforgot);
+        btnchange = findViewById(R.id.btchangepass);
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Wait a second baby...");
         firebaseuser = auth.getCurrentUser();
+        btnchange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+            }
+        });
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

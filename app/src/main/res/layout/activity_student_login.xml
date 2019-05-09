@@ -20,8 +20,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/ic_arrow_back_black_24dp"
-        android:drawableStart="@drawable/backg"
-        android:drawableLeft="@drawable/backg"
         android:id="@+id/bthome"
         />
         <TextView
@@ -35,9 +33,9 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="280dp"
+        android:layout_width="250dp"
         android:src="@drawable/go_first"
-        android:layout_height="280dp" />
+        android:layout_height="250dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,6 +47,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20dp"
             android:fontFamily="@font/supercreative"
             android:text="EMAIL ADDRESS"
             />
@@ -56,14 +56,16 @@
             android:id="@+id/et_User"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:backgroundTint="@color/colorPrimary"
             android:textColor="@color/black"
              />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="20dp"
             android:fontFamily="@font/supercreative"
             android:text="PASSWORD"
             />
@@ -71,7 +73,7 @@
             android:id="@+id/et_Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:backgroundTint="@color/colorPrimary"
             android:textColor="@color/black"
             />
@@ -81,6 +83,8 @@
             android:layout_marginTop="8dp"
             android:layout_gravity="end"
             android:id="@+id/forgot_pass"
+            android:textSize="18sp"
+            android:textColor="@color/black"
             android:fontFamily="@font/supercreative"
             android:text="FORGOT PASSWORD?"
             />
@@ -88,7 +92,7 @@
             android:id="@+id/bt_Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/login_student"
              />
         <TextView
@@ -98,8 +102,8 @@
             android:layout_gravity="center"
             android:elevation="4dp"
             android:fontFamily="@font/arial"
-            android:text="New User Reister here"
-            android:textSize="15sp"
+            android:text="New User Register here"
+            android:textSize="12sp"
             android:textColor="@color/black" />
         />
     </LinearLayout>

@@ -18,7 +18,9 @@ private  static  int Timeout=3000;
             @Override
             public void run() {
                 FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-                if (user==null)
+                Intent intent=new Intent(MainActivity.this,activity_choose.class);
+                startActivity(intent);
+                /*if (user==null)
                 {
                   Intent intent=new Intent(MainActivity.this,activity_choose.class);
                   startActivity(intent);
@@ -26,7 +28,7 @@ private  static  int Timeout=3000;
                 {
                  Intent intent=new Intent(MainActivity.this,activity_navigation.class);
                  startActivity(intent);
-                }
+                }*/
                 finish();
             }
         },Timeout);

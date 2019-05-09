@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 class StatusHome extends RecyclerView.Adapter<StatusHome.MyHolder> {
-    ArrayList<Teacherstatus> sub_list=new ArrayList<>();
+    ArrayList<UserDataR> sub_list=new ArrayList<>();
     ArrayList<String> ids=new ArrayList<>();
     Context context;
     public StatusHome(studenthome context) {
@@ -33,18 +33,22 @@ class StatusHome extends RecyclerView.Adapter<StatusHome.MyHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StatusHome.MyHolder myHolder, final int i) {
-        final Teacherstatus teacherstatus=sub_list.get(i);
-        myHolder.txtemail.setText(teacherstatus.temail);
-        myHolder.txtinformation.setText(teacherstatus.data);
-        myHolder.txttime.setText(String.valueOf(teacherstatus.timesep));
-        if(teacherstatus.imagestatus !=null) {
-            myHolder.photo.setVisibility(View.VISIBLE);
-            Picasso.get().load(teacherstatus.imagestatus).into(myHolder.photo);
-        }
+    public void onBindViewHolder(@NonNull final StatusHome.MyHolder myHolder, final int i) {
+        final UserDataR user=sub_list.get(i);
+        myHolder.txtName.setText(user.getFname()+" "+user.getLname());
+        myHolder.txtdepartment.setText("Department :"+user.getDepartment());
+        myHolder.txtphn.setText(user.getPhone());
+        myHolder.txtview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,SubjectsActivity.class);
+                intent.putExtra("uid",user.getUid());
+                context.startActivity(intent);
+            }
+        });
 
 
-        myHolder.photo.setOnClickListener(new View.OnClickListener() {
+      /*  myHolder.photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
@@ -52,7 +56,7 @@ class StatusHome extends RecyclerView.Adapter<StatusHome.MyHolder> {
                 intent.setDataAndType(Uri.parse(teacherstatus.imagestatus), "image/*");
                 context.startActivity(intent);
             }
-        });
+        });*/
 
 
      //myHolder.photo.setImageResource(teacherstatus.imagestatus);
@@ -72,22 +76,22 @@ class StatusHome extends RecyclerView.Adapter<StatusHome.MyHolder> {
         return sub_list.size();
     }
 
-    public void addData(Teacherstatus teacherstatus, String id) {
+    public void addData(UserDataR teacherstatus, String id) {
         this.sub_list.add(teacherstatus);
         this.ids.add(id);
         notifyDataSetChanged();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
-        TextView txtemail,txttime,txtinformation;
-        ImageView photo;
+        TextView txtName,
+                txtdepartment,txtphn,txtview;
         CardView cardView;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            txtemail=itemView.findViewById(R.id.tv_email);
-            txttime=itemView.findViewById(R.id.tv_time);
-            txtinformation=itemView.findViewById(R.id.tv_info);
-            photo=itemView.findViewById(R.id.img_photo);
-        }
+            txtName=itemView.findViewById(R.id.tv_Name);
+            txtdepartment=itemView.findViewById(R.id.tv_Dept);
+            txtphn=itemView.findViewById(R.id.tv_Phn);
+            txtview=itemView.findViewById(R.id.view_attendance);
+            }
     }
 }

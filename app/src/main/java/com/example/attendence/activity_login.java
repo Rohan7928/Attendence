@@ -28,6 +28,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class activity_login extends AppCompatActivity implements View.OnClickListener {
     TextView forgot;
     EditText etUser, etPassword;
@@ -48,7 +51,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         etPassword = findViewById(R.id.etPassword);
        forgot=findViewById(R.id.forgotpass);
         btLogin =  findViewById(R.id.btLogin);
-        bthome =  findViewById(R.id.bthome);
+        bthome =  findViewById(R.id.bthomemain);
         btregister =  findViewById(R.id.btregister);
         btLogin.setOnClickListener(this);
         bthome.setOnClickListener(this);
@@ -84,30 +87,41 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }
     private void signup() {
         startActivity(new Intent(getApplicationContext(),activity_signup.class));
+        finish();
     }
     private void home() {
         Intent intent = new Intent(this, activity_choose.class);
         startActivity(intent);
-        Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     private void login() {
         String username = etUser.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
-        if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
-            etUser.setError("Enter valid email");
-            return;
-        }
 
-            if (username.isEmpty() || password.isEmpty()) {
-            Util.toast(this, "Not valid");
-        } else {
+
+
+        if (username.isEmpty() || password.isEmpty())
+        {
+            Util.toast(this, "Empty");
+        }
+        else  if (!Patterns.EMAIL_ADDRESS.matcher(username).matches())
+        {
+               etUser.setError("Enter valid email");
+               return;
+        }
+        else  if (!isValidPassword(etPassword.getText().toString().trim())) {
+            etPassword.setError("Your password contain special symbol,One letter in capitals and numeric also");
+        }
+        else
+            {
             dologin(username, password);
 
         }
     }
 
     private void dologin(String username, String password) {
+
                auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -116,6 +130,10 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                     progressDialog.dismiss();
                     startActivity(new Intent(getApplicationContext(), activity_navigation.class));
                     finish();
+                }
+                else
+                {
+                    Toast.makeText(activity_login.this, "Email & Password doesn't match", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -129,6 +147,18 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
 
 
+        }
+    public boolean isValidPassword(final String password) {
+
+        Pattern pattern;
+        Matcher matcher;
+
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
 
        /* db.collection("Data").document(FirebaseAuth.getInstance().getUid()).collection("user")
                 .document(mail).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

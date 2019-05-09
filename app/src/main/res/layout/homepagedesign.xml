@@ -103,6 +103,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_width="40sp"
                     android:padding="4dp"
+                    android:visibility="gone"
                     android:layout_height="40sp"
                     android:src="@drawable/ic_check_white_24dp" />
                 <ImageView
@@ -115,18 +116,21 @@
                     android:id="@+id/iedit"
                     android:layout_width="40sp"
                     android:padding="4dp"
+                    android:visibility="gone"
                     android:layout_height="40sp"
                     android:src="@drawable/ic_edit_white_24dp" />
                 <ImageView
                     android:id="@+id/iperson"
                     android:layout_width="40sp"
                     android:padding="4dp"
+                    android:visibility="gone"
                     android:layout_height="40sp"
                     android:src="@drawable/ic_person_black_24dp" />
                 <ImageView
                     android:id="@+id/idelete"
                     android:layout_width="40sp"
                     android:padding="4dp"
+                    android:visibility="gone"
                     android:layout_height="40sp"
                     android:onClick="delete"
                     android:src="@drawable/ic_delete_black_24dp"/>

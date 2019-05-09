@@ -22,7 +22,7 @@
             android:background="@drawable/ic_arrow_back_black_24dp"
             android:drawableStart="@drawable/backg"
             android:drawableLeft="@drawable/backg"
-            android:id="@+id/bthome"
+            android:id="@+id/bthomemain"
             />
         <TextView
             android:layout_width="match_parent"
@@ -35,10 +35,10 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="280dp"
+        android:layout_width="250dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/go_second"
-        android:layout_height="280dp" />
+        android:layout_height="250dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,21 +52,23 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/supercreative"
             android:text="EMAIL ADDRESS"
+            android:textColor="@color/black"
             android:textSize="20sp"
             />
         <EditText
             android:id="@+id/etUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:backgroundTint="@color/colorPrimary"
             android:textColor="@color/black"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:textSize="20sp"
+            android:textColor="@color/black"
             android:fontFamily="@font/supercreative"
             android:text="PASSWORD"
             />
@@ -74,7 +76,7 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:backgroundTint="@color/colorPrimary"
             android:textColor="@color/black"
             />
@@ -84,6 +86,7 @@
             android:layout_marginTop="8dp"
             android:layout_gravity="end"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:id="@+id/forgotpass"
             android:fontFamily="@font/supercreative"
             android:text="FORGOT PASSWORD?"
@@ -102,7 +105,7 @@
             android:layout_gravity="center"
             android:elevation="4dp"
             android:fontFamily="@font/arial"
-            android:text="New User Reister here"
+            android:text="New User Register here"
             android:textSize="15sp"
             android:textColor="@color/black" />
         />

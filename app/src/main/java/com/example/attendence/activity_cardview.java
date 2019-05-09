@@ -44,6 +44,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
     TextView sem_num,date;
     EditText sub_name, sub_divison, sub_dept,rollfrom, rollto;
     RadioGroup radioGroup;
+    Button back;
     FloatingActionButton btn_add;
     RadioButton lecture, lab,seminar,workshop,exam;
     FirebaseAuth auth;
@@ -81,7 +82,14 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
         exam=findViewById(R.id.rd_exam);
         workshop=findViewById(R.id.rd_workshop);
         seminar=findViewById(R.id.rd_seminar);
+        back=findViewById(R.id.buttonback);
         btn_add = findViewById(R.id.button_add);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+            }
+        });
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

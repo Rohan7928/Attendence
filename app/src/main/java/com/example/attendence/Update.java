@@ -32,6 +32,7 @@ public class Update extends AppCompatActivity {
     FloatingActionButton btnupdate;
     FirebaseAuth auth;
     FirebaseFirestore db;
+    Button backupdate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,20 +42,27 @@ public class Update extends AppCompatActivity {
         recyclerView=findViewById(R.id.attend_recycler);
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        backupdate=findViewById(R.id.btupdate);
         btnupdate = findViewById(R.id.btn_update);
         final UpdateAdapter updateAdapter=new UpdateAdapter(this,subject.students);
         RecyclerView.LayoutManager manager=new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(updateAdapter);
         final Long timestemp=new Date().getTime();
-btnupdate.setOnClickListener(new View.OnClickListener() {
+        backupdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+            }
+        });
+        btnupdate.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         Map<String,List<Student>> map=new HashMap<>();
         List<Student> list=updateAdapter.list;
         map.put("students",list);
-        db.collection("Subjects").document(FirebaseAuth.getInstance().getUid())
-                .collection("subjects").document(id).update("students",list)
+        db.collection("Data").document(FirebaseAuth.getInstance().getUid())
+                .collection("Subjects").document(id).update("students",list)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

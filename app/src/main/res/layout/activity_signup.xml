@@ -42,7 +42,6 @@
         android:id="@+id/inputView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/reg"
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:padding="30dp">
@@ -89,7 +88,6 @@
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/scriptmtbold"
                 android:hint="Email" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
@@ -134,38 +132,10 @@
                 android:layout_marginLeft="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Department" />
+                android:hint="Branch" />
         </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/black">
-
-            <EditText
-                android:id="@+id/etFather"
-                android:layout_width="match_parent"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/black"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="Father Name" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/black">
-
-            <EditText
-                android:id="@+id/etMother"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:hint="Mother Name" />
-        </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -190,6 +160,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:inputType="number"
                 android:id="@+id/etMobile"
                 android:backgroundTint="@color/black"
                 android:textColor="@color/black"

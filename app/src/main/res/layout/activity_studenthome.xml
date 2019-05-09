@@ -10,12 +10,10 @@
 <include layout="@layout/homepage"/>
     <android.support.design.widget.NavigationView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:headerLayout="@layout/headerpage"
-        app:menu="@menu/menu_page"
         app:itemTextColor="@color/colorPrimaryDark"
         android:id="@+id/navigation_view"
-        android:fitsSystemWindows="true"
         android:layout_gravity="start"
         />
 

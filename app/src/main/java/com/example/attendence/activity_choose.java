@@ -30,11 +30,9 @@ public class activity_choose extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-                progressDialog.show();
                 Intent intent = new Intent(activity_choose.this,activity_login.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(),"Login As Teacher",Toast.LENGTH_SHORT).show();
-
             }
         });
       btLogIn2.setOnClickListener(new View.OnClickListener() {

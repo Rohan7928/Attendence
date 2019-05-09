@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".student_signup"
     android:orientation="vertical"
-    android:background="@drawable/backg"
-    android:fillViewport="true">
+    tools:context=".student_signup"
+    android:background="@drawable/go_bg">
     <LinearLayout
         android:layout_width="match_parent"
         android:padding="8dp"
@@ -17,9 +16,8 @@
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:padding="4dp"
             android:background="@drawable/ic_arrow_back_black_24dp"
-            android:drawableStart="@drawable/backg"
-            android:drawableLeft="@drawable/backg"
             android:id="@+id/bthomepage1"
             />
         <TextView
@@ -32,18 +30,18 @@
             android:layout_height="wrap_content" />
         
     </LinearLayout>
-    <RelativeLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:background="@drawable/go_bg"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:fillViewport="false"
 
+        >
         <LinearLayout
             android:id="@+id/inputView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/reg"
-            android:layout_centerVertical="true"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:background="@drawable/go_bg"
+           android:orientation="vertical"
             android:padding="8dp">
 
             <android.support.design.widget.TextInputLayout
@@ -70,6 +68,7 @@
 
                 <EditText
                     android:id="@+id/etLastName"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/black"
@@ -92,13 +91,9 @@
                     android:textColor="@color/black" />
             </android.support.design.widget.TextInputLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
                 <android.support.design.widget.TextInputLayout
-                    android:layout_width="160dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/black">
 
@@ -107,7 +102,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/black"
-                        android:gravity="center"
                         android:hint="Password"
                         android:textColor="@color/black" />
 
@@ -115,24 +109,20 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:layout_width="175dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textColorHint="@color/black">
 
+                    android:textColorHint="@color/black">
                     <EditText
                         android:id="@+id/etConfirmpass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/black"
-                        android:gravity="center"
                         android:hint="Confirm Password"
                         android:textColor="@color/black" />
 
-
                 </android.support.design.widget.TextInputLayout>
 
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -157,7 +147,7 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:layout_width="145dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/black">
 
@@ -165,17 +155,16 @@
                         android:id="@+id/etDepartment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="15dp"
                         android:backgroundTint="@color/black"
-                        android:gravity="center"
-                        android:hint="Department"
+                        android:hint="Branch"
                         android:textColor="@color/black" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:layout_width="140dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:textColorHint="@color/black">
 
                     <EditText
@@ -183,7 +172,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/black"
-                        android:gravity="center"
                         android:hint="Class"
                         android:textColor="@color/black" />
 
@@ -247,15 +235,15 @@
                 <EditText
                     android:id="@+id/etMobile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="@color/black"
                     android:hint="Mobile No."
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textSize="17dp" />
 
             </android.support.design.widget.TextInputLayout>
-
             <Button
                 android:id="@+id/btSubmit"
                 android:layout_width="150dp"
@@ -267,8 +255,7 @@
                 android:hint="Submit"
                 android:textColorHint="@color/black"
                 android:textSize="25dp" />
-
         </LinearLayout>
 
-    </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

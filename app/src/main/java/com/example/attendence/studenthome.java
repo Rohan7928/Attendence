@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,14 +29,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-public class studenthome extends AppCompatActivity {
+public class studenthome extends AppCompatActivity implements View.OnClickListener {
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
     StatusHome statusadapter;
     ProgressDialog progressDialog;
     NavigationView navigationView;
     ImageView imageView;
-    TextView statusdata,status;
     Button add;
     FirebaseAuth auth;
     FirebaseFirestore db;
@@ -63,8 +63,6 @@ public class studenthome extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         recyclerView = findViewById(R.id.recycler_view);
-        status = findViewById(R.id.txt_info);
-        statusdata=findViewById(R.id.tv_info);
         statusadapter=new StatusHome(this);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
@@ -83,69 +81,79 @@ public class studenthome extends AppCompatActivity {
                 }
             }
         });
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId())
-                {
-                    case R.id.homepage:
-                    {
-                        startActivity(new Intent(getApplicationContext(),studenthome.class));
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }
-                    case R.id.attendance:
-                    {
-                       // startActivity(new Intent(getApplicationContext(),ViewAttendence.class));
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }
-                    case R.id.changepass:
-                    {
-                      startActivity(new Intent(getApplicationContext(),activity_studentpassword.class));
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }case R.id.logout:
-                    {
-                        auth.signOut();
-                        startActivity(new Intent(studenthome.this,student_login.class));
-                        drawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    }
-                }
-                return true;
-            }
-        });
+        View view=navigationView.getHeaderView(0);
+        LinearLayout home=view.findViewById(R.id.header_Home);
+        LinearLayout status=view.findViewById(R.id.header_Status);
+        LinearLayout changeassword=view.findViewById(R.id.header_Changepass);
+        LinearLayout logout=view.findViewById(R.id.header_Logout);
+
+        home.setOnClickListener(this);
+        status.setOnClickListener(this);
+        changeassword.setOnClickListener(this);
+        logout.setOnClickListener(this);
+
     }
    private void getsaveddata() {
-        db.collection("Data")
-                .orderBy("timesep", Query.Direction.DESCENDING)
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful())
-                {
-                    if (task.getResult().size()== 0)
-                    {
-                        status.setVisibility(View.VISIBLE);
-                    }
-                    else
-                    {
-                        status.setVisibility(View.GONE);
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Teacherstatus teacherstatus = document.toObject(Teacherstatus.class);
-                            statusadapter.addData(teacherstatus, document.getId());
-                            statusadapter.notifyDataSetChanged();
-                            //Log.e("subject ", subjects.sub_name);
-                        }
-                    }
-                }
+      db.collection("users").document(auth.getUid())
+              .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+          @Override
+          public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+              if (task.isSuccessful())
+              {
+                  UserDataR da=task.getResult().toObject(UserDataR.class);
+                  db.collection("users")
+                          .whereEqualTo("department", da.getDepartment())
+                          .whereEqualTo("type","Teacher")
+                          .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                      @Override
+                      public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                          if (task.isSuccessful())
+                          {
+
+                                  for (QueryDocumentSnapshot document : task.getResult()) {
+                                      UserDataR teacherstatus = document.toObject(UserDataR.class);
+                                      statusadapter.addData(teacherstatus, document.getId());
+                                      statusadapter.notifyDataSetChanged();
+                                      //Log.e("subject ", subjects.sub_name);
+
+                              }
+                          }
+                      }
+                  }).addOnFailureListener(new OnFailureListener() {
+                      @Override
+                      public void onFailure(@NonNull Exception e) {
+                          Toast.makeText(studenthome.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                      }
+                  });
+              }
+          }
+      });
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.header_Home: {
+                startActivity(new Intent(getApplicationContext(), studenthome.class));
+                drawerLayout.closeDrawer(Gravity.START);
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(studenthome.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            case R.id.header_Status: {
+                //startActivity(new Intent(getApplicationContext(),activity_viewstatus.class));
+                drawerLayout.closeDrawer(Gravity.START);
+                break;
             }
-        });
+            case R.id.header_Changepass: {
+                startActivity(new Intent(getApplicationContext(), activity_studentpassword.class));
+                drawerLayout.closeDrawer(Gravity.START);
+                break;
+            }
+            case R.id.header_Logout: {
+                auth.signOut();
+                startActivity(new Intent(getApplicationContext(), student_login.class));
+                drawerLayout.closeDrawer(Gravity.START);
+                break;
+            }
+        }
     }
 }

@@ -12,7 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
@@ -41,14 +44,36 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StudentAdapter.MyHolder myHolder, final int i) {
-       final Subjects subjects=sub_list.get(i);
+    public void onBindViewHolder(@NonNull final StudentAdapter.MyHolder myHolder, final int i) {
+
+        final Subjects subjects=sub_list.get(i);
         myHolder.tvsub_name.setText(subjects.sub_name);
         myHolder.tvsub_type.setText(subjects.type);
         myHolder.tvsem.setText(subjects.semester);
         myHolder.tv_dept.setText(subjects.sub_dept);
         myHolder.tv_division.setText(subjects.sub_division);
-        if (i % 2 == 1) {
+        db.collection("users").document(auth.getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    UserDataR da = task.getResult().toObject(UserDataR.class);
+                    if (da.getType().equals("Teacher"))
+                    {
+                       myHolder.check.setVisibility(View.VISIBLE);
+                               myHolder.chart.setVisibility(View.VISIBLE);
+                               myHolder. edit.setVisibility(View.VISIBLE);
+                               myHolder.       person.setVisibility(View.VISIBLE);
+                               myHolder.       delete.setVisibility(View.VISIBLE);
+
+                    }else {
+
+                    }
+                }
+            }
+                });
+
+                    if (i % 2 == 1) {
             myHolder.cardView.setCardBackgroundColor(Color.parseColor("#FF0000"));
             //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         } else {
@@ -121,26 +146,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder
         this.ids.add(id);
         notifyDataSetChanged();
     }
- /*   private void getdata() {
-
-        String uid = auth.getUid();
-        db.collection("Subjects").document(uid).collection("subjects")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Subjects subjects = document.toObject(Subjects.class);
-                                Log.e("subject ", subjects.sub_name);
-                            }
-                        } else {
-                            Log.e("he", "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-
-    }*/
 
     public void removeData(int i) {
         this.sub_list.remove(i);
