@@ -28,12 +28,14 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder
    ArrayList<String> ids=new ArrayList<>();
    ArrayList<Attendence> attend_list=new ArrayList<>();
    Context context;
+    String teacherUid;
    FirebaseAuth auth=FirebaseAuth.getInstance();
    FirebaseFirestore db=FirebaseFirestore.getInstance();
     doAlert listner;
-    public StudentAdapter(Context context,  doAlert listner) {
+    public StudentAdapter(Context context, doAlert listner, String uid) {
         this.context=context;
         this.listner=listner;
+        teacherUid=uid;
     }
 
     @NonNull
@@ -99,6 +101,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder
                 String subject=new Gson().toJson(subjects);
                 Intent intent=new Intent(context,ViewAttendence.class);
                 intent.putExtra("list",subject);
+                intent.putExtra("tuid",teacherUid);
                 intent.putExtra("id",ids.get(i));
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);

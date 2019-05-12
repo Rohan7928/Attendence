@@ -58,7 +58,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         btregister.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Wait a second baby...");
+        progressDialog.setMessage("Wait a second...");
         auth = FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
         helper = new DataBaseHelper(this);
@@ -77,7 +77,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             case R.id.btLogin:
                 login();
                 break;
-            case R.id.bthome:
+            case R.id.bthomemain:
                 home();
                 break;
             case R.id.btregister:
@@ -127,7 +127,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
-                    progressDialog.dismiss();
+                    progressDialog.show();
                     startActivity(new Intent(getApplicationContext(), activity_navigation.class));
                     finish();
                 }

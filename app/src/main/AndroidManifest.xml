@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SubjectsActivity"></activity>
+        <activity android:name=".Change_teacherpassword" />
+        <activity android:name=".SubjectsActivity" />
         <activity android:name=".activity_studentpassword" />
         <activity android:name=".activity_viewstatus" />
         <activity android:name=".activity_status" />

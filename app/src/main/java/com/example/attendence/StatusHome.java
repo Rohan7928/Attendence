@@ -41,7 +41,7 @@ class StatusHome extends RecyclerView.Adapter<StatusHome.MyHolder> {
         myHolder.txtview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,SubjectsActivity.class);
+                Intent intent=new Intent(context,ViewAttendence.class);
                 intent.putExtra("uid",user.getUid());
                 context.startActivity(intent);
             }

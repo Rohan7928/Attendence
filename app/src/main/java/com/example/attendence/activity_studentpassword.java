@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
+
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,16 +17,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class activity_studentpassword extends AppCompatActivity {
-    EditText Email;
-    EditText pass, confirmpass, phn;
-    ImageView verify;
-    CardView card;
+    EditText oldpass,newpass;
+     Button verify;
     FirebaseAuth auth;
     FirebaseFirestore db;
     ProgressDialog progressDialog;
@@ -35,18 +39,58 @@ public class activity_studentpassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studentpassword);
-        Email = findViewById(R.id.etEmail);
+        oldpass = findViewById(R.id.etold);
+        newpass = findViewById(R.id.etnew);
         verify = findViewById(R.id.btn_Verify);
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Wait a second baby...");
+        progressDialog.setMessage("Wait a second...");
         firebaseuser = auth.getCurrentUser();
-        card.setVisibility(View.GONE);
-        phn.setVisibility(View.INVISIBLE);
+
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!isValidPassword(newpass.getText().toString().trim()))
+                {
+                    newpass.setError("Your password contain special symbol,One letter in capitals and numeric also");
+                }
+                else {
+                    final FirebaseUser user;
+                    user = FirebaseAuth.getInstance().getCurrentUser();
+                    final String email = user.getEmail();
+                    String oldpassword = oldpass.getText().toString();
+                    final String newpassword = newpass.getText().toString();
+
+                    AuthCredential credential = EmailAuthProvider.getCredential(email, oldpassword);
+                    user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                user.updatePassword(newpassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(getApplicationContext(), "Password change", Toast.LENGTH_SHORT).show();
+                                            auth.signOut();
+                                            startActivity(new Intent(getApplicationContext(), activity_choose.class));
+                                            finish();
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "Sorry", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Old password incorrect", Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+                    });
+                }
+            }
+
                /* final String mail = Email.getText().toString();
                 progressDialog.show();
                 db.collection("StudentData").document(FirebaseAuth.getInstance().getUid()).collection("user")
@@ -70,7 +114,19 @@ public class activity_studentpassword extends AppCompatActivity {
                         Toast.makeText(activity_studentpassword.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });*/
-            }
+
         });
+    }
+    public boolean isValidPassword(final String password) {
+
+        Pattern pattern;
+        Matcher matcher;
+
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
     }
 }

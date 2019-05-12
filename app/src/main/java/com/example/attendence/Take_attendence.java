@@ -92,6 +92,7 @@ public class Take_attendence extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Take_attendence.this, "Updated", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(getApplicationContext(), activity_navigation.class));
+                                    finish();
                                 }
                             }
                         }).addOnFailureListener(new OnFailureListener() {

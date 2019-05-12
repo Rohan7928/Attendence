@@ -11,6 +11,18 @@
         android:layout_gravity="center"
         android:layout_height="200dp"
         android:src="@drawable/ic_app_logo" />
+    <TextView
+        android:layout_width="match_parent"
+        android:text="Name"
+        android:id="@+id/header_User"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:padding="16dp"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"

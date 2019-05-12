@@ -37,6 +37,7 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
     NavigationView navigationView;
     ImageView imageView;
     Button add;
+    TextView infostatus;
     FirebaseAuth auth;
     FirebaseFirestore db;
     AlertDialog dialog;
@@ -59,6 +60,7 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
         drawerLayout=findViewById(R.id.draw__able);
         navigationView=findViewById(R.id.navigation_view);
         imageView=findViewById(R.id.btn_im);
+        infostatus=findViewById(R.id.txt_infostatus);
         add=findViewById(R.id.add);
         auth=FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -86,12 +88,20 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
         LinearLayout status=view.findViewById(R.id.header_Status);
         LinearLayout changeassword=view.findViewById(R.id.header_Changepass);
         LinearLayout logout=view.findViewById(R.id.header_Logout);
-
+        final TextView User=view.findViewById(R.id.header_User);
         home.setOnClickListener(this);
         status.setOnClickListener(this);
         changeassword.setOnClickListener(this);
         logout.setOnClickListener(this);
-
+        db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot documentSnapshot=task.getResult();
+                UserDataR userDataR=documentSnapshot.toObject(UserDataR.class);
+                User.setText(userDataR.getFname() +" "+ userDataR.getLname());
+            }
+        });
     }
    private void getsaveddata() {
       db.collection("users").document(auth.getUid())
@@ -100,6 +110,7 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
           public void onComplete(@NonNull Task<DocumentSnapshot> task) {
               if (task.isSuccessful())
               {
+                  infostatus.setVisibility(View.GONE);
                   UserDataR da=task.getResult().toObject(UserDataR.class);
                   db.collection("users")
                           .whereEqualTo("department", da.getDepartment())
@@ -137,9 +148,10 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
             case R.id.header_Home: {
                 startActivity(new Intent(getApplicationContext(), studenthome.class));
                 drawerLayout.closeDrawer(Gravity.START);
+                break;
             }
             case R.id.header_Status: {
-                //startActivity(new Intent(getApplicationContext(),activity_viewstatus.class));
+                getstatus();
                 drawerLayout.closeDrawer(Gravity.START);
                 break;
             }
@@ -155,5 +167,44 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
                 break;
             }
         }
+    }
+
+    private void getstatus() {
+
+        db.collection("users").document(auth.getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful())
+                {
+                    UserDataR da=task.getResult().toObject(UserDataR.class);
+                    db.collection("users")
+                            .whereEqualTo("department", da.getDepartment())
+                            .whereEqualTo("type","Teacher")
+                            .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful())
+                            {
+
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    UserDataR teacherstatus = document.toObject(UserDataR.class);
+                                    Intent intent=new Intent(getApplicationContext(),activity_viewstatus.class);
+                                    intent.putExtra("uid",teacherstatus.getUid());
+                                    startActivity(intent);
+                                    //Log.e("subject ", subjects.sub_name);
+
+                                }
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
     }
 }

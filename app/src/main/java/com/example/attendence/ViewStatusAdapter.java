@@ -22,8 +22,11 @@ class ViewStatusAdapter extends RecyclerView.Adapter<ViewStatusAdapter.Myholder>
     ArrayList<Teacherstatus> sub_list=new ArrayList<>();
     ArrayList<String> ids=new ArrayList<>();
     Context context;
+
+
     public ViewStatusAdapter(activity_viewstatus activity_viewstatus) {
         this.context=activity_viewstatus;
+
     }
 
     @NonNull

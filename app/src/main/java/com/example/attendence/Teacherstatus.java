@@ -1,8 +1,9 @@
 package com.example.attendence;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 class Teacherstatus {
     String data, uid;
-
 
     public String getUid() {
         return uid;
@@ -32,8 +33,9 @@ class Teacherstatus {
 
     String timesep;
 
-    public Teacherstatus() {
 
+    public Teacherstatus() {
+        this.uid= FirebaseAuth.getInstance().getUid();
     }
 
     public String getImagestatus() {
@@ -60,7 +62,8 @@ class Teacherstatus {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(String data)
+    {
         this.data = data;
     }
 

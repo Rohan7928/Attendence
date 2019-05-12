@@ -34,12 +34,14 @@ public class ViewAttendence extends AppCompatActivity implements View.OnClickLis
     Subjects subject;
     String subNodeId;
     Button bthome;
+    String tuid="";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_att);
          bthome=findViewById(R.id.btnhome);
         subject = new Gson().fromJson(getIntent().getStringExtra("list"), Subjects.class);
+        tuid = getIntent().getStringExtra("tuid");
         subNodeId = getIntent().getStringExtra("id");
         getData();
         bthome.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +53,9 @@ public class ViewAttendence extends AppCompatActivity implements View.OnClickLis
     }
 
     private void getData() {
-        FirebaseFirestore.getInstance().collection("Data").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        if (tuid.isEmpty())
+            tuid=FirebaseAuth.getInstance().getUid();
+        FirebaseFirestore.getInstance().collection("Data").document(tuid)
                 .collection("Attendence").document(subNodeId).collection("attendence")
                 .orderBy("date", Query.Direction.DESCENDING).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

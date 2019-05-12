@@ -29,18 +29,27 @@
             />
     </LinearLayout>
 
-
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/top"
+    android:id="@+id/Still"
+    android:textColor="@color/black"
+    android:textSize="20sp"
+    android:gravity="center"
+    android:padding="8dp"
+    android:text="Attendance List"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/top">
+        android:layout_below="@+id/Still">
 
 
     </android.support.v7.widget.RecyclerView>
     <TextView
-        android:id="@+id/txt_info"
+        android:id="@+id/txt_infostatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

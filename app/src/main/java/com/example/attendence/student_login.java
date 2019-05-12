@@ -86,6 +86,7 @@ public class student_login extends AppCompatActivity implements View.OnClickList
         Intent intent = new Intent(this, activity_choose.class);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     private void login() {
@@ -115,7 +116,7 @@ public class student_login extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    progressDialog.dismiss();
+                    progressDialog.show();
                     startActivity(new Intent(getApplicationContext(), studenthome.class));
                     finish();
                 }
@@ -130,6 +131,7 @@ public class student_login extends AppCompatActivity implements View.OnClickList
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();
+                Toast.makeText(student_login.this,"Email & Password doesn't match", Toast.LENGTH_SHORT);
                 Toast.makeText(student_login.this, e.getMessage(), Toast.LENGTH_SHORT);
             }
         });

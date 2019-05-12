@@ -38,6 +38,7 @@ import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 public class activity_status extends AppCompatActivity {
     private static final int GALLERY_REQUEST = 1;
@@ -87,13 +88,13 @@ public class activity_status extends AppCompatActivity {
                     String email=auth.getCurrentUser().getEmail();
                     String data = etstatus.getText().toString();
                     String time = txtcurrent_time.getText().toString();
-                    final String uid = auth.getCurrentUser().getUid();
                     final Teacherstatus status = new Teacherstatus();
                     status.setData(data);
                     status.setUid(FirebaseAuth.getInstance().getUid());
                     status.setTimesep(time);
                     status.setTemail(email);
-                    db.collection("Data").document().set(status)
+                    db.collection("Data").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Status").document(UUID.randomUUID().toString())
+                            .set(status)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -138,7 +139,7 @@ public class activity_status extends AppCompatActivity {
                                     status.setImagename(capImageURI.getLastPathSegment());
                                     status.setImagestatus(uri.toString());
 
-                                    final DocumentReference ref = db.collection("Data").document();
+                                    final DocumentReference ref = db.collection("Data").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Status").document(UUID.randomUUID().toString());
                                     ref.set(status).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {

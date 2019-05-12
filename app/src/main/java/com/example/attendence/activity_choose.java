@@ -33,6 +33,7 @@ public class activity_choose extends AppCompatActivity {
                 Intent intent = new Intent(activity_choose.this,activity_login.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(),"Login As Teacher",Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
       btLogIn2.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +43,7 @@ public class activity_choose extends AppCompatActivity {
               FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
               Intent intent = new Intent(activity_choose.this,student_login.class);
               startActivity(intent);
+              finish();
               /* if (user==null) {
                   progressDialog.dismiss();
                   Intent intent = new Intent(activity_choose.this,student_login.class);

@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,9 +26,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.auth.User;
 
 public class activity_navigation extends AppCompatActivity implements StudentAdapter.doAlert, View.OnClickListener {
   DrawerLayout drawerLayout;
@@ -46,6 +44,7 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
   FirebaseAuth auth;
   FirebaseFirestore db;
   AlertDialog dialog;
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(Gravity.START)) {
@@ -58,32 +57,29 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-        progressDialog=new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Wait a sec...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setCancelable(false);
-        drawerLayout=findViewById(R.id.drawable);
-        navigationView=findViewById(R.id.navigation);
-        imageView=findViewById(R.id.btn_img);
-        add=findViewById(R.id.Add);
-        auth=FirebaseAuth.getInstance();
+        drawerLayout = findViewById(R.id.drawable);
+        navigationView = findViewById(R.id.navigation);
+        imageView = findViewById(R.id.btn_img);
+        add = findViewById(R.id.Add);
+        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         recyclerView = findViewById(R.id.recycler);
         status = findViewById(R.id.status);
-        adapter=new StudentAdapter(getApplicationContext(),this);
+        adapter = new StudentAdapter(getApplicationContext(), this, "");
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
-       getsavedata();
+        getsavedata();
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(drawerLayout.isDrawerOpen(Gravity.START))
-                {
-                 drawerLayout.closeDrawer(Gravity.START);
-                }
-                else
-                {
+                if (drawerLayout.isDrawerOpen(Gravity.START)) {
+                    drawerLayout.closeDrawer(Gravity.START);
+                } else {
                     drawerLayout.openDrawer(Gravity.START);
                 }
             }
@@ -92,23 +88,32 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(activity_navigation.this,activity_cardview.class));
+                startActivity(new Intent(activity_navigation.this, activity_cardview.class));
             }
         });
 
 
-        View view=navigationView.getHeaderView(0);
-        LinearLayout home=view.findViewById(R.id.header_home);
-        LinearLayout status=view.findViewById(R.id.header_status);
-        LinearLayout changeassword=view.findViewById(R.id.header_changepass);
-        LinearLayout logout=view.findViewById(R.id.header_logout);
-
+        View view = navigationView.getHeaderView(0);
+        LinearLayout home = view.findViewById(R.id.header_home);
+        LinearLayout status = view.findViewById(R.id.header_status);
+        LinearLayout changeassword = view.findViewById(R.id.header_changepass);
+        LinearLayout logout = view.findViewById(R.id.header_logout);
+        final TextView user = view.findViewById(R.id.header_user);
         home.setOnClickListener(this);
         status.setOnClickListener(this);
         changeassword.setOnClickListener(this);
         logout.setOnClickListener(this);
 
-         }
+        db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot documentSnapshot=task.getResult();
+                UserDataR userDataR=documentSnapshot.toObject(UserDataR.class);
+                user.setText(userDataR.getFname() +" "+userDataR.getLname());
+            }
+        });
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId())
@@ -117,25 +122,31 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
             {
                 startActivity(new Intent(getApplicationContext(),activity_navigation.class));
                 drawerLayout.closeDrawer(Gravity.START);
+                break;
             }
             case R.id.header_status:
             {
-                startActivity(new Intent(getApplicationContext(),activity_viewstatus.class));
+
+               Intent intent=new Intent(getApplicationContext(),activity_viewstatus.class);
+                intent.putExtra("uid",FirebaseAuth.getInstance().getCurrentUser().getUid());
+                startActivity(intent);
+
                 drawerLayout.closeDrawer(Gravity.START);
                 break;
             }
             case R.id.header_changepass:
             {
-                startActivity(new Intent(getApplicationContext(),Change_password.class));
+                startActivity(new Intent(getApplicationContext(),activity_studentpassword.class));
                 drawerLayout.closeDrawer(Gravity.START);
                 break;
-            }case R.id.header_logout:
-        {
+            }
+            case R.id.header_logout:
+            {
             auth.signOut();
             startActivity(new Intent(getApplicationContext(),activity_login.class));
             drawerLayout.closeDrawer(Gravity.START);
             break;
-        }
+            }
         }
 
     }
@@ -156,8 +167,10 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
                         status.setVisibility(View.GONE);
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Subjects subjects = document.toObject(Subjects.class);
+
                             adapter.addData(subjects, document.getId());
                             adapter.notifyDataSetChanged();
+
                             Log.e("subject ", subjects.sub_name);
                         }
                     }

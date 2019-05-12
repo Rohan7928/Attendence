@@ -46,16 +46,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:padding="8dp"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:id="@+id/write"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:padding="12dp"
+                    android:scaleType="fitXY"
                     android:id="@+id/setprofile"
+                    android:layout_marginBottom="10dp"
                     android:src="@drawable/library"/>
                 <EditText
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:paddingBottom="20dp"
                     android:layout_marginLeft="10dp"
@@ -75,6 +78,7 @@
                     android:layout_width="50dp"
                     android:layout_alignParentEnd="true"
                     android:gravity="end"
+
                     android:layout_height="50dp"
                     android:src="@drawable/ic_send_black_24dp"
                     android:layout_alignParentRight="true" />
@@ -84,7 +88,7 @@
                     android:hint="time"
                     android:textSize="25dp"
                     android:textColorHint="@color/black"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_centerInParent="true"
                     android:id="@+id/current_time"/>
                 <ImageView

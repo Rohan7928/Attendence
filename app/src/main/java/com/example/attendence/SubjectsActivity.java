@@ -25,7 +25,7 @@ public class SubjectsActivity extends AppCompatActivity implements StudentAdapte
         setContentView(R.layout.activity_subjects);
         uid=getIntent().getStringExtra("uid");
         recyclerView = findViewById(R.id.recycler);
-        adapter=new StudentAdapter(getApplicationContext(),this);
+        adapter=new StudentAdapter(getApplicationContext(),this,uid);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);

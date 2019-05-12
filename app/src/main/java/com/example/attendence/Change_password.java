@@ -47,7 +47,8 @@ public class Change_password extends AppCompatActivity {
         btnchange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+                startActivity(new Intent(getApplicationContext(),activity_choose.class));
+                finish();
             }
         });
         verify.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +56,7 @@ public class Change_password extends AppCompatActivity {
             public void onClick(View v) {
                 String email=Email.getText().toString();
                 if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches())
+
                     Toast.makeText(Change_password.this, "Enter Valid E mail", Toast.LENGTH_SHORT).show();
                else
                 {
