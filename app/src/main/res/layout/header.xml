@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="600dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/go_bg">
 
-      <ImageView
-       android:layout_marginTop="10dp"
-       android:layout_width="200dp"
+   <com.mikhaellopez.circularimageview.CircularImageView
+       android:layout_width="250dp"
+       android:layout_height="250dp"
+       app:civ_border_color="#EEEEEE"
+       app:civ_border_width="4dp"
+       app:civ_shadow="true"
+       app:civ_shadow_radius="10"
+       app:civ_shadow_color="#8BC34A"
        android:layout_gravity="center"
-       android:layout_height="200dp"
-       android:src="@drawable/ic_app_logo" />
+       android:id="@+id/teacher_photo"
+       android:src="@drawable/go_second"/>
 
       <TextView
           android:layout_width="match_parent"

@@ -29,6 +29,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
+
 public class studenthome extends AppCompatActivity implements View.OnClickListener {
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
@@ -87,6 +90,8 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
         LinearLayout home=view.findViewById(R.id.header_Home);
         LinearLayout status=view.findViewById(R.id.header_Status);
         LinearLayout changeassword=view.findViewById(R.id.header_Changepass);
+        final CircularImageView imageView=view.findViewById(R.id.student_photo);
+
         LinearLayout logout=view.findViewById(R.id.header_Logout);
         final TextView User=view.findViewById(R.id.header_User);
         home.setOnClickListener(this);
@@ -100,6 +105,8 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
                 DocumentSnapshot documentSnapshot=task.getResult();
                 UserDataR userDataR=documentSnapshot.toObject(UserDataR.class);
                 User.setText(userDataR.getFname() +" "+ userDataR.getLname());
+                Picasso.get().load(userDataR.getProfileurl()).into(imageView);
+
             }
         });
     }
@@ -191,6 +198,7 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
                                     UserDataR teacherstatus = document.toObject(UserDataR.class);
                                     Intent intent=new Intent(getApplicationContext(),activity_viewstatus.class);
                                     intent.putExtra("uid",teacherstatus.getUid());
+                                    intent.putExtra("isstudent","true");
                                     startActivity(intent);
                                     //Log.e("subject ", subjects.sub_name);
 

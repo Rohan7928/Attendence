@@ -42,9 +42,19 @@
         android:id="@+id/inputView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:orientation="vertical"
-        android:padding="30dp">
+        android:padding="10dp">
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="4dp"
+            app:civ_shadow="true"
+            app:civ_shadow_radius="10"
+            app:civ_shadow_color="#8BC34A"
+            android:layout_gravity="center"
+            android:id="@+id/add_photo"
+            android:src="@drawable/addphoto"/>
 
                <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

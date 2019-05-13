@@ -9,17 +9,8 @@
 android:layout_width="match_parent"
 android:padding="8dp"
 android:background="@color/colorPrimary"
-android:layout_height="wrap_content"
-    >
+android:layout_height="wrap_content">
 
-<Button
-    android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:background="@drawable/ic_arrow_back_black_24dp"
-    android:drawableStart="@drawable/backg"
-    android:drawableLeft="@drawable/backg"
-    android:id="@+id/btnhome"
-    />
 <TextView
     android:layout_width="match_parent"
     android:text="ATTENDANCE"

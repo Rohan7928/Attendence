@@ -31,6 +31,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.auth.User;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 public class activity_navigation extends AppCompatActivity implements StudentAdapter.doAlert, View.OnClickListener {
   DrawerLayout drawerLayout;
@@ -98,11 +100,15 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
         LinearLayout status = view.findViewById(R.id.header_status);
         LinearLayout changeassword = view.findViewById(R.id.header_changepass);
         LinearLayout logout = view.findViewById(R.id.header_logout);
+        final CircularImageView imageView=view.findViewById(R.id.teacher_photo);
         final TextView user = view.findViewById(R.id.header_user);
         home.setOnClickListener(this);
         status.setOnClickListener(this);
         changeassword.setOnClickListener(this);
         logout.setOnClickListener(this);
+
+
+
 
         db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -111,6 +117,7 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
                 DocumentSnapshot documentSnapshot=task.getResult();
                 UserDataR userDataR=documentSnapshot.toObject(UserDataR.class);
                 user.setText(userDataR.getFname() +" "+userDataR.getLname());
+                Picasso.get().load(userDataR.getProfileurl()).into(imageView);
             }
         });
     }
@@ -167,7 +174,6 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
                         status.setVisibility(View.GONE);
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Subjects subjects = document.toObject(Subjects.class);
-
                             adapter.addData(subjects, document.getId());
                             adapter.notifyDataSetChanged();
 

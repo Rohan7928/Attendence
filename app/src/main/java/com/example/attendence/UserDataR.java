@@ -77,6 +77,15 @@ public UserDataR(){
     private String clas;
     private String uid;
 
+    public String getProfileurl() {
+        return profileurl;
+    }
+
+    public void setProfileurl(String profileurl) {
+        this.profileurl = profileurl;
+    }
+
+    private  String profileurl;
     public String getUid() {
         return uid;
     }
@@ -121,7 +130,7 @@ public UserDataR(){
 
 
 
-    public UserDataR(String fname, String lname, String email, String pass, String phone, String father, String mother, String address, String sem, String department, String clas,String type) {
+    public UserDataR(String fname, String lname, String email, String pass, String phone, String father, String mother, String address, String sem, String department, String clas,String type,String uri) {
     this.fname=fname;
     this.lname=lname;
     this.email=email;
@@ -134,9 +143,10 @@ public UserDataR(){
     this.clas=clas;
     this.type=type;
     this.uid= FirebaseAuth.getInstance().getUid();
+    this.profileurl=uri;
 
     }
-    public UserDataR(String fname,String lname,String email,String phone,String type,String department){
+    public UserDataR(String fname,String lname,String email,String phone,String type,String department,String uri){
         this.fname=fname;
         this.lname=lname;
         this.email=email;
@@ -144,5 +154,6 @@ public UserDataR(){
         this.department=department;
         this.type=type;
         this.uid= FirebaseAuth.getInstance().getUid();
+        this.profileurl=uri;
     }
 }

@@ -2,11 +2,14 @@ package com.example.attendence;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,6 +34,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -57,7 +61,7 @@ public class activity_status extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("wait a sec...");
+        progressDialog.setMessage("wait a sec..");
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         etstatus = findViewById(R.id.edit_status);
@@ -83,7 +87,6 @@ public class activity_status extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressDialog.show();
-
                 if (capImageURI == null) {
                     String email=auth.getCurrentUser().getEmail();
                     String data = etstatus.getText().toString();
@@ -98,7 +101,7 @@ public class activity_status extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    progressDialog.show();
+                                    progressDialog.dismiss();
                                     Toast.makeText(activity_status.this, "status sent", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(getApplicationContext(), activity_navigation.class));
                                    finish();
@@ -143,8 +146,6 @@ public class activity_status extends AppCompatActivity {
                                     ref.set(status).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                    progressDialog.show();
-
 
                                                     Toast.makeText(activity_status.this, "status sent", Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(getApplicationContext(), activity_navigation.class));
@@ -170,6 +171,15 @@ public class activity_status extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
                             Toast.makeText(activity_status.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                            progressDialog.setTitle("Uploading a file...");
+                            progressDialog.setProgress(0);
+                            int currentProgress= (int) (100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                            progressDialog.setProgress(currentProgress);
                         }
                     });
                 }
@@ -254,9 +264,17 @@ public class activity_status extends AppCompatActivity {
         startActivityForResult(pickPhoto, GALLERY_REQUEST);
     }
     private void startCamera() {
-        Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePicture.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePicture, CAMERA_REQUEST);
+        StrictMode.VmPolicy.Builder builder=new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        Intent takepicture=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(takepicture.resolveActivity(getPackageManager()) != null)
+        {
+            String filename="temp.jpg";
+            ContentValues values=new ContentValues();
+            values.put(MediaStore.Images.Media.TITLE,filename);
+            capImageURI=getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
+            takepicture.putExtra(MediaStore.EXTRA_OUTPUT,capImageURI);
+            startActivityForResult(takepicture,CAMERA_REQUEST);
         }
     }
     @Override
@@ -273,9 +291,14 @@ public class activity_status extends AppCompatActivity {
                 break;
             }
             case CAMERA_REQUEST: {
-                if (resultCode == RESULT_OK && data.getData() != null) {
-                    capImageURI = data.getData();
-                    setProfileImage(data.getData());
+                if (resultCode == RESULT_OK ) {
+               String[] projection={MediaStore.Images.Media.DATA};
+                    Cursor cursor=managedQuery(capImageURI,projection,null,null,null);
+                    int column_index_data=cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                    cursor.moveToFirst();
+                    String picturepath=cursor.getString(column_index_data);
+                    capImageURI=Uri.parse("file://"+ picturepath);
+                    setProfileImage(capImageURI);
                 } else {
                     Toast.makeText(this, "No Image Captured! Try Again", Toast.LENGTH_SHORT).show();
                 }
@@ -287,6 +310,5 @@ public class activity_status extends AppCompatActivity {
     private void setProfileImage(Uri data) {
         setimage.setImageURI(data);
     }
-
 
 }

@@ -33,51 +33,73 @@ public class ViewAttendence extends AppCompatActivity implements View.OnClickLis
 
     Subjects subject;
     String subNodeId;
-    Button bthome;
     String tuid="";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_att);
-         bthome=findViewById(R.id.btnhome);
         subject = new Gson().fromJson(getIntent().getStringExtra("list"), Subjects.class);
         tuid = getIntent().getStringExtra("tuid");
         subNodeId = getIntent().getStringExtra("id");
         getData();
-        bthome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),activity_navigation.class));
-            }
-        });
+
     }
 
     private void getData() {
         if (tuid.isEmpty())
-            tuid=FirebaseAuth.getInstance().getUid();
-        FirebaseFirestore.getInstance().collection("Data").document(tuid)
-                .collection("Attendence").document(subNodeId).collection("attendence")
-                .orderBy("date", Query.Direction.DESCENDING).get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            ArrayList<Attendence> attendencesList = new ArrayList<>();
-                            ArrayList<Student> students = new ArrayList<>();
-                            for (DocumentSnapshot snapshot : task.getResult()) {
-                                Attendence attendence = snapshot.toObject(Attendence.class);
-                                attendencesList.add(attendence);
+        {
+           String uid=FirebaseAuth.getInstance().getUid();
+            FirebaseFirestore.getInstance().collection("Data").document(uid)
+                    .collection("Attendence").document(subNodeId).collection("attendence")
+                    .orderBy("date", Query.Direction.DESCENDING).get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                ArrayList<Attendence> attendencesList = new ArrayList<>();
+                                ArrayList<Student> students = new ArrayList<>();
+                                for (DocumentSnapshot snapshot : task.getResult()) {
+                                    Attendence attendence = snapshot.toObject(Attendence.class);
+                                    attendencesList.add(attendence);
+                                }
+                                addHeaders(attendencesList);
+                                addData(attendencesList);
                             }
-                            addHeaders(attendencesList);
-                            addData(attendencesList);
                         }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ViewAttendence.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(ViewAttendence.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else
+        {
+            FirebaseFirestore.getInstance().collection("Data").document(tuid)
+                    .collection("Attendence").document(subNodeId).collection("attendence")
+                    .orderBy("date", Query.Direction.DESCENDING).get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                ArrayList<Attendence> attendencesList = new ArrayList<>();
+                                ArrayList<Student> students = new ArrayList<>();
+                                for (DocumentSnapshot snapshot : task.getResult()) {
+                                    Attendence attendence = snapshot.toObject(Attendence.class);
+                                    attendencesList.add(attendence);
+                                }
+                                addHeaders(attendencesList);
+                                addData(attendencesList);
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(ViewAttendence.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
     }
 
     private TextView getTextView(int id, String title, int color, int typeface, int bgColor) {
@@ -135,38 +157,40 @@ public class ViewAttendence extends AppCompatActivity implements View.OnClickLis
     public void addData(ArrayList<Attendence> attendencesList) {
         int attsize = attendencesList.size();
         TableLayout tl = findViewById(R.id.table);
+        try {
+            for (int i = 0; i < attendencesList.get(0).getList().size(); i++) {
+                TableRow tr = new TableRow(this);
+                tr.setLayoutParams(getLayoutParams());
+                tr.addView(getTextView(i, attendencesList.get(0).getList().get(i).name, Color.BLACK, Typeface.NORMAL, Color.WHITE));
+                tr.addView(getTextView(i, String.valueOf(attendencesList.get(0).getList().get(i).getRoll_no()), Color.BLACK, Typeface.NORMAL, Color.WHITE));
 
-        for (int i = 0; i < attendencesList.get(0).getList().size(); i++) {
-            TableRow tr = new TableRow(this);
-            tr.setLayoutParams(getLayoutParams());
-            tr.addView(getTextView(i, attendencesList.get(0).getList().get(i).name, Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            tr.addView(getTextView(i, String.valueOf(attendencesList.get(0).getList().get(i).getRoll_no()),Color.BLACK, Typeface.NORMAL,Color.WHITE));
+                int totalP = 0;
+                int totalA = 0;
+                float total = 0.0f;
+                for (int a = 0; a < attsize; a++) {
+                    Boolean status = attendencesList.get(a).getList().get(i).status;
+                    if (status) {
+                        tr.addView(getTextView(i, "P", Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+                        totalP = totalP + 1;
+                        total = totalP * 100 / (totalA + totalP);
 
-            int totalP=0;
-            int totalA=0;
-            float total=0.0f;
-            for (int a = 0; a < attsize; a++) {
-                Boolean status = attendencesList.get(a).getList().get(i).status;
-                if (status) {
-                    tr.addView(getTextView(i, "P", Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
-                    totalP = totalP + 1;
-                    total=totalP*100/(totalA+totalP);
+                    } else {
+                        totalA = totalA + 1;
+                        tr.addView(getTextView(i, "A", Color.WHITE, Typeface.NORMAL, Color.RED));
+                    }
 
                 }
-                else
-                {
-                    totalA = totalA + 1;
-                    tr.addView(getTextView(i, "A", Color.WHITE, Typeface.NORMAL, Color.RED));
-                }
-
+                tr.addView(getTextView(i, String.valueOf(totalP), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+                tr.addView(getTextView(i, String.valueOf(totalA), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+                tr.addView(getTextView(i, String.valueOf(total + "%"), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+                tl.addView(tr, getTblLayoutParams());
             }
-            tr.addView(getTextView(i, String.valueOf(totalP), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            tr.addView(getTextView(i, String.valueOf(totalA), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            tr.addView(getTextView(i, String.valueOf(total+"%"), Color.BLACK, Typeface.NORMAL,Color.WHITE));
-            tl.addView(tr, getTblLayoutParams());
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, "No Attendance found ", Toast.LENGTH_SHORT).show();
         }
     }
-
     @Override
     public void onClick(View v) {
         int id = v.getId();

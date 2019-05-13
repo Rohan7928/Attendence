@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -64,16 +66,22 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyHolder
                     {
                        myHolder.check.setVisibility(View.VISIBLE);
                                myHolder.chart.setVisibility(View.VISIBLE);
-                               myHolder. edit.setVisibility(View.VISIBLE);
-                               myHolder.       person.setVisibility(View.VISIBLE);
-                               myHolder.       delete.setVisibility(View.VISIBLE);
+                               myHolder.edit.setVisibility(View.VISIBLE);
+                               myHolder.person.setVisibility(View.VISIBLE);
+                               myHolder.delete.setVisibility(View.VISIBLE);
 
                     }else {
 
                     }
                 }
             }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
                     if (i % 2 == 1) {
             myHolder.cardView.setCardBackgroundColor(Color.parseColor("#FF0000"));
