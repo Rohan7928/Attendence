@@ -13,6 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".edit_teacher"></activity>
+        <activity android:name=".edit_student" />
+        <activity android:name=".student_profile" />
+        <activity android:name=".profile" />
         <activity android:name=".Change_teacherpassword" />
         <activity android:name=".SubjectsActivity" />
         <activity android:name=".activity_studentpassword" />

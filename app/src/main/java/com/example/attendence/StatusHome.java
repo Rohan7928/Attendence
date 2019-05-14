@@ -46,6 +46,17 @@ class StatusHome extends RecyclerView.Adapter<StatusHome.MyHolder> {
                 context.startActivity(intent);
             }
         });
+        myHolder.txtstatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,activity_viewstatus.class);
+                intent.putExtra("uid",user.getUid());
+                intent.putExtra("isstudent","true");
+                context.startActivity(intent);
+
+            }
+        });
+
 
 
       /*  myHolder.photo.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +95,7 @@ class StatusHome extends RecyclerView.Adapter<StatusHome.MyHolder> {
 
     public class MyHolder extends RecyclerView.ViewHolder {
         TextView txtName,
-                txtdepartment,txtphn,txtview;
+                txtdepartment,txtphn,txtview,txtstatus;
         CardView cardView;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,6 +103,7 @@ class StatusHome extends RecyclerView.Adapter<StatusHome.MyHolder> {
             txtdepartment=itemView.findViewById(R.id.tv_Dept);
             txtphn=itemView.findViewById(R.id.tv_Phn);
             txtview=itemView.findViewById(R.id.view_attendance);
+            txtstatus=itemView.findViewById(R.id.view_status);
             }
     }
 }

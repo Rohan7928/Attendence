@@ -83,7 +83,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
         storageReference = FirebaseStorage.getInstance().getReference().child("Database").child("Users");
         fb = FirebaseFirestore.getInstance();
         progressDialog=new ProgressDialog(this);
-        progressDialog.setMessage("Wait a second baby...");
+        progressDialog.setMessage("Wait a second...");
         auth=FirebaseAuth.getInstance();
 
     }
@@ -231,6 +231,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
     }
 
     private void Submit() {
+        progressDialog.show();
         final String fname=etfirst.getText().toString().trim();
         final String lname=etlast.getText().toString().trim();
         final String email=etemail.getText().toString().trim();
@@ -318,7 +319,6 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
     }
 
     private void savedata(String fname, String lname, String email, String phone, String department, Uri uri) {
-    progressDialog.show();
         UserDataR user=new UserDataR(fname, lname, email,phone,"Teacher",department,String.valueOf(uri));
         fb.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
          .set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -327,7 +327,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
          if(task.isSuccessful())
          {
            progressDialog.dismiss();
-             Toast.makeText(activity_signup.this, "User Registered", Toast.LENGTH_SHORT).show();
+             Toast.makeText(activity_signup.this, "New Teacher Added", Toast.LENGTH_SHORT).show();
               startActivity(new Intent(getApplicationContext(),activity_login.class));
               finish();
          }
@@ -335,6 +335,7 @@ public class activity_signup extends AppCompatActivity implements View.OnClickLi
  }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
                 Toast.makeText(activity_signup.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                finish();
             }

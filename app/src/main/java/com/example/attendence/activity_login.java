@@ -58,7 +58,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         btregister.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Wait a second...");
+        progressDialog.setMessage("Logging in...");
         auth = FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
         helper = new DataBaseHelper(this);
@@ -96,6 +96,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }
 
     private void login() {
+        progressDialog.show();
         String username = etUser.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
@@ -120,19 +121,20 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private void dologin(String username, String password) {
+    private void dologin(String username, final String password) {
 
                auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
-                    progressDialog.show();
+                    progressDialog.dismiss();
                     startActivity(new Intent(getApplicationContext(), activity_navigation.class));
                     finish();
                 }
                 else
                 {
+                    progressDialog.dismiss();
                     Toast.makeText(activity_login.this, "Email & Password doesn't match", Toast.LENGTH_SHORT).show();
                 }
             }

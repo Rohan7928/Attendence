@@ -4,34 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_signup"
     android:orientation="vertical"
-    android:background="@drawable/backg"
-    android:fillViewport="true"
-    >
+    tools:context=".edit_teacher">
     <LinearLayout
         android:layout_width="match_parent"
         android:padding="8dp"
         android:background="@color/colorPrimary"
         android:layout_height="wrap_content"
         >
-
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/ic_arrow_back_black_24dp"
-            android:drawableStart="@drawable/backg"
-            android:drawableLeft="@drawable/backg"
-            android:id="@+id/bthomepage"
-            />
         <TextView
             android:layout_width="match_parent"
-            android:text="TEACHER SIGN UP"
+            android:text="EDIT TEACHER RECORD"
             android:textSize="18dp"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textAlignment="center"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <RelativeLayout
@@ -42,30 +31,21 @@
         <LinearLayout
             android:id="@+id/inputView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_centerInParent="true"
             android:padding="10dp">
 
-            <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/add_photo"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:src="@drawable/addphoto"
-                app:civ_border_color="#EEEEEE"
-                app:civ_border_width="4dp"
-                app:civ_shadow="true"
-                android:background="@drawable/background_nav_header_user_img"
-                app:civ_shadow_color="#8BC34A"
-                app:civ_shadow_radius="10" />
+
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
                 android:textColorHint="@color/black">
 
                 <EditText
-                    android:id="@+id/etFirstName"
+                    android:id="@+id/etxtFirstName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/black"
@@ -82,7 +62,7 @@
                 android:textColorHint="@color/black">
 
                 <EditText
-                    android:id="@+id/etLastName"
+                    android:id="@+id/etxtLastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/black"
@@ -91,19 +71,6 @@
             </android.support.design.widget.TextInputLayout>
 
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/black">
-
-                <EditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black"
-                    android:hint="Email"
-                    android:textColor="@color/black" />
-            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -111,39 +78,7 @@
                 android:textColorHint="@color/black">
 
                 <EditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black"
-                    android:hint="Password"
-                    android:textColor="@color/black" />
-
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/black">
-
-                <EditText
-                    android:id="@+id/etConfirmpass"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black"
-                    android:hint="Confirm Password"
-                    android:textColor="@color/black" />
-
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/black">
-
-                <EditText
-                    android:id="@+id/et_Department"
+                    android:id="@+id/etxtDepartment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -158,7 +93,7 @@
                 android:textColorHint="@color/black">
 
                 <EditText
-                    android:id="@+id/etMobile"
+                    android:id="@+id/etxtMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -170,21 +105,41 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <Button
-                android:id="@+id/btSubmit"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/roundbutton"
-                android:fontFamily="@font/supercreative"
-                android:hint="Submit"
-                android:textColorHint="@color/black"
-                android:textSize="25dp" />
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/btnsubmit"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbutton"
+                    android:fontFamily="@font/supercreative"
+                    android:hint="OK"
+                    android:textColorHint="@color/black"
+                    android:textSize="25dp"
+                    />
+                <Button
+                    android:id="@+id/btncancel"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbutton"
+                    android:fontFamily="@font/supercreative"
+                    android:hint="Cancel"
+                    android:textColorHint="@color/black"
+                    android:textSize="25dp"
+                    />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
     </RelativeLayout>
-
 
 </LinearLayout>

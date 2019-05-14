@@ -3,63 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".student_signup"
-    android:background="@drawable/go_bg">
+    tools:context=".edit_student">
     <LinearLayout
         android:layout_width="match_parent"
         android:padding="8dp"
         android:background="@color/colorPrimary"
         android:layout_height="wrap_content"
         >
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="4dp"
-            android:background="@drawable/ic_arrow_back_black_24dp"
-            android:id="@+id/bthomepage1"
-            />
         <TextView
             android:layout_width="match_parent"
-            android:text="STUDENT SIGN UP"
+            android:text="EDIT STUDENT RECORD"
             android:textSize="18dp"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textAlignment="center"
             android:layout_height="wrap_content" />
-        
+
     </LinearLayout>
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <LinearLayout
             android:id="@+id/inputView"
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="match_parent"
             android:background="@drawable/go_bg"
-           android:orientation="vertical"
+            android:orientation="vertical"
             android:padding="8dp">
-            <com.mikhaellopez.circularimageview.CircularImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:civ_border_color="#EEEEEE"
-                app:civ_border_width="4dp"
-                app:civ_shadow="true"
-                app:civ_shadow_radius="10"
-                app:civ_shadow_color="#8BC34A"
-                android:background="@drawable/background_nav_header_user_img"
-                android:layout_gravity="center"
-                android:id="@+id/add_studentphoto"
-                android:src="@drawable/addphoto"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/black">
+                android:textColorHint="@color/black"
+                android:layout_marginTop="50dp">
 
                 <EditText
-                    android:id="@+id/etFirstName"
+                    android:id="@+id/FirstName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/black"
@@ -76,7 +54,7 @@
                 android:textColorHint="@color/black">
 
                 <EditText
-                    android:id="@+id/etLastName"
+                    android:id="@+id/LastName"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -84,54 +62,6 @@
                     android:hint="Last Name"
                     android:textColor="@color/black" />
             </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/black">
-
-                <EditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black"
-                    android:hint="Email"
-                    android:textColor="@color/black" />
-            </android.support.design.widget.TextInputLayout>
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/black">
-
-                    <EditText
-                        android:id="@+id/etPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/black"
-                        android:hint="Password"
-                        android:textColor="@color/black" />
-
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:textColorHint="@color/black">
-                    <EditText
-                        android:id="@+id/etConfirmpass"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/black"
-                        android:hint="Confirm Password"
-                        android:textColor="@color/black" />
-
-                </android.support.design.widget.TextInputLayout>
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -144,7 +74,7 @@
                     android:textColorHint="@color/black">
 
                     <EditText
-                        android:id="@+id/etsem"
+                        android:id="@+id/sem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/black"
@@ -161,7 +91,7 @@
                     android:textColorHint="@color/black">
 
                     <EditText
-                        android:id="@+id/etDepartment"
+                        android:id="@+id/Department"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -177,7 +107,7 @@
                     android:textColorHint="@color/black">
 
                     <EditText
-                        android:id="@+id/etclass"
+                        android:id="@+id/Class"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/black"
@@ -195,7 +125,7 @@
                 android:textColorHint="@color/black">
 
                 <EditText
-                    android:id="@+id/etFather"
+                    android:id="@+id/Father"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -210,7 +140,7 @@
                 android:textColorHint="@color/black">
 
                 <EditText
-                    android:id="@+id/etMother"
+                    android:id="@+id/Mother"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -225,7 +155,7 @@
                 android:textColorHint="@color/black">
 
                 <EditText
-                    android:id="@+id/etAddress"
+                    android:id="@+id/Address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -242,7 +172,7 @@
                 android:textColorHint="@color/black">
 
                 <EditText
-                    android:id="@+id/etMobile"
+                    android:id="@+id/Mobile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
@@ -253,18 +183,39 @@
                     android:textSize="17dp" />
 
             </android.support.design.widget.TextInputLayout>
-            <Button
-                android:id="@+id/btSubmit"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/roundbutton"
-                android:fontFamily="@font/supercreative"
-                android:hint="Submit"
-                android:textColorHint="@color/black"
-                android:textSize="25dp" />
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+                 <Button
+                     android:id="@+id/submit"
+                     android:layout_width="150dp"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center"
+                     android:layout_marginLeft="20dp"
+                     android:layout_marginTop="20dp"
+                     android:background="@drawable/roundbutton"
+                     android:fontFamily="@font/supercreative"
+                     android:hint="OK"
+                     android:textColorHint="@color/black"
+                     android:textSize="25dp"
+                     />
+                 <Button
+                     android:id="@+id/cancel"
+                     android:layout_width="150dp"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center"
+                     android:layout_marginLeft="50dp"
+                     android:layout_marginTop="20dp"
+                     android:background="@drawable/roundbutton"
+                     android:fontFamily="@font/supercreative"
+                     android:hint="Cancel"
+                     android:textColorHint="@color/black"
+                     android:textSize="25dp"
+                     />
+
+             </LinearLayout>
+
         </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

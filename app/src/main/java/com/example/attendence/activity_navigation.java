@@ -96,7 +96,7 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
 
 
         View view = navigationView.getHeaderView(0);
-        LinearLayout home = view.findViewById(R.id.header_home);
+        LinearLayout home = view.findViewById(R.id.header_profile);
         LinearLayout status = view.findViewById(R.id.header_status);
         LinearLayout changeassword = view.findViewById(R.id.header_changepass);
         LinearLayout logout = view.findViewById(R.id.header_logout);
@@ -125,9 +125,9 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
     public void onClick(View v) {
         switch (v.getId())
         {
-            case R.id.header_home:
+            case R.id.header_profile:
             {
-                startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+                startActivity(new Intent(getApplicationContext(),profile.class));
                 drawerLayout.closeDrawer(Gravity.START);
                 break;
             }
@@ -137,7 +137,6 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
                Intent intent=new Intent(getApplicationContext(),activity_viewstatus.class);
                 intent.putExtra("uid",FirebaseAuth.getInstance().getCurrentUser().getUid());
                 startActivity(intent);
-
                 drawerLayout.closeDrawer(Gravity.START);
                 break;
             }
@@ -152,6 +151,7 @@ public class activity_navigation extends AppCompatActivity implements StudentAda
             auth.signOut();
             startActivity(new Intent(getApplicationContext(),activity_login.class));
             drawerLayout.closeDrawer(Gravity.START);
+            finish();
             break;
             }
         }

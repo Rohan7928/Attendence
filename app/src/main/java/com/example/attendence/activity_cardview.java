@@ -61,6 +61,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_cardview);
         auth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Adding Detail");
         progressDialog.setMessage("wait a sec...");
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
@@ -82,12 +83,13 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
         exam=findViewById(R.id.rd_exam);
         workshop=findViewById(R.id.rd_workshop);
         seminar=findViewById(R.id.rd_seminar);
-        back=findViewById(R.id.buttonback);
+        back=findViewById(R.id.backsubject);
         btn_add = findViewById(R.id.button_add);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),activity_navigation.class));
+                finish();
             }
         });
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -147,6 +149,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
               btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 String semester = sem_num.getText().toString();
                 String subname = sub_name.getText().toString().trim();
                 String subdivision = sub_divison.getText().toString().trim();
@@ -200,7 +203,6 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
     }
 
     private void storedata(String email, String semester, String subname, String subdept, String subdivision, String type, int start, int end, String current) {
-        progressDialog.show();
 
         List<Student> student = new ArrayList<>();
         for (int c = start; c <= end; c++) {
@@ -214,7 +216,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        progressDialog.hide();
+                        progressDialog.dismiss();
                         Toast.makeText(activity_cardview.this, "Error", Toast.LENGTH_SHORT).show();
                         finish();
                     }
@@ -222,16 +224,14 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(activity_cardview.this, "Subject", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(activity_cardview.this, activity_navigation.class));
                     progressDialog.dismiss();
+                    startActivity(new Intent(activity_cardview.this, activity_navigation.class));
                     finish();
                 }
             }
         });
     }
     private void updatedata(String email, String semester, String subname, String subdept, String subdivision, String type, int start, int end, String current) {
-        progressDialog.show();
 
         List<Student> student = new ArrayList<>();
         for (int c = start; c <= end; c++) {
@@ -244,7 +244,7 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
                     .addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    progressDialog.hide();
+                    progressDialog.dismiss();
                     Toast.makeText(activity_cardview.this, "Error", Toast.LENGTH_SHORT).show();
                     finish();
                 }
@@ -252,9 +252,8 @@ public class activity_cardview extends AppCompatActivity implements View.OnClick
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(activity_cardview.this, "Subject", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(activity_cardview.this, activity_navigation.class));
                         progressDialog.dismiss();
+                        startActivity(new Intent(activity_cardview.this, activity_navigation.class));
                         finish();
                     }
                 }

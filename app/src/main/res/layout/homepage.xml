@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textColor="@color/black"
-        android:text="No Status Available" />
+        android:text="No Attendance Available" />
     <FrameLayout
         android:layout_below="@id/top"
         android:id="@+id/contai_frame"

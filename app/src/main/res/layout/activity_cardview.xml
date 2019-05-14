@@ -9,18 +9,20 @@
     tools:context=".activity_cardview">
     <LinearLayout
         android:layout_width="match_parent"
-        android:padding="8dp"
+        android:padding="5dp"
+        android:id="@+id/i"
         android:background="@color/colorPrimary"
         android:layout_height="wrap_content"
         >
 
         <Button
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/ic_arrow_back_black_24dp"
             android:drawableStart="@drawable/backg"
             android:drawableLeft="@drawable/backg"
-            android:id="@+id/buttonback"
+            android:id="@+id/backsubject"
             />
         <TextView
             android:layout_width="match_parent"
@@ -36,7 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:background="@color/colorPrimary"
+        android:layout_below="@+id/i"
+        android:background="@color/gray"
         android:fillViewport="true">
 
         <LinearLayout
@@ -87,7 +90,7 @@
                         android:layout_centerInParent="true"
                         android:gravity="center"
                         android:text="1"
-                        android:textColor="@android:color/background_light"
+                        android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <ImageView
@@ -113,7 +116,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="220dp"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -137,33 +140,33 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Lecture"
-                            android:textColor="@color/colorPrimaryDark"                            android:textSize="16sp"/>
+                            android:textColor="@color/black"                            android:textSize="16sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_lab"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Lab"
-                            android:textColor="@color/colorPrimaryDark"                            android:textSize="16sp"/>
+                            android:textColor="@color/black"                            android:textSize="16sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_seminar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Seminar"
-                            android:textColor="@color/colorPrimaryDark"                            android:textSize="16sp"/>
+                            android:textColor="@color/black"                            android:textSize="16sp"/>
 
                         <RadioButton
                             android:id="@+id/rd_workshop"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/colorPrimaryDark"                            android:text="Workshop" />
+                            android:textColor="@color/black"                            android:text="Workshop" />
 
                         <RadioButton
                             android:id="@+id/rd_exam"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/colorPrimaryDark"                            android:text="Exam"
+                            android:textColor="@color/black"                            android:text="Exam"
                             android:textSize="16sp"
                             />
                     </RadioGroup>
@@ -202,9 +205,9 @@
                         android:layout_centerInParent="true"
                         android:layout_marginBottom="10dp"
                         android:hint="Subect Name"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@android:color/background_light"
-                        android:textColorHint="@android:color/background_light"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/gray"
+                        android:textColorHint="@color/black"
                         android:textSize="16sp" />
 
                     <EditText
@@ -213,10 +216,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginBottom="10dp"
-                        android:backgroundTint="@android:color/background_light"
-                        android:textColorHint="@android:color/background_light"
-                        android:hint="Department"
-                        android:textColor="@color/white"
+                        android:backgroundTint="@color/gray"
+                        android:textColorHint="@color/black"
+                        android:hint="Branch"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <EditText
@@ -224,10 +227,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:backgroundTint="@android:color/background_light"
-                        android:textColorHint="@android:color/background_light"
-                        android:textColor="@color/white"
-                        android:hint="Divison"
+                        android:backgroundTint="@color/gray"
+                        android:textColorHint="@color/black"
+                        android:textColor="@color/black"
+                        android:hint="Class"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -263,18 +266,20 @@
                         <EditText
                             android:id="@+id/roll_from"
                             android:layout_width="match_parent"
-                            android:backgroundTint="@color/colorPrimaryDark"
-                            android:textColorHint="@color/colorPrimaryDark"
+                            android:backgroundTint="@color/gray"
+                            android:textColorHint="@color/black"
                             android:layout_height="wrap_content"
                             android:hint="Roll from"
+                            android:textColor="@color/black"
                             android:textSize="16sp" />
 
                         <EditText
                             android:id="@+id/roll_to"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/colorPrimaryDark"
-                            android:textColorHint="@color/colorPrimaryDark"
+                            android:backgroundTint="@color/gray"
+                            android:textColorHint="@color/black"
+                            android:textColor="@color/black"
                             android:hint="Roll to"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -310,14 +315,16 @@
 
                     <Button
                         android:id="@+id/current_date"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Date"
+                        android:text="Select date"
                         android:gravity="center"
                         android:layout_marginTop="5dp"
+                        android:background="@drawable/roundbutton"
+                        android:layout_gravity="center"
                         android:backgroundTint="@android:color/background_light"
                         android:textColorHint="@android:color/background_light"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/black"
                         android:textSize="20sp" />
 
                 </LinearLayout>

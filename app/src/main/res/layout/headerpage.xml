@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="600dp"
+    android:layout_height="800dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/go_bg"
     android:orientation="vertical">
@@ -38,7 +38,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:id="@+id/header_Home"
+            android:id="@+id/header_Profile"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -48,7 +48,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:text="HOME"
+                android:text="PROFILE"
                 android:layout_marginLeft="16dp"
                 android:padding="16dp"
                 android:layout_height="wrap_content" />

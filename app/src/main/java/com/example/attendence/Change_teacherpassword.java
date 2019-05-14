@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -36,7 +37,7 @@ public class Change_teacherpassword extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Wait a second...");
+        progressDialog.setMessage("wait a second...");
         firebaseuser = auth.getCurrentUser();
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +49,7 @@ public class Change_teacherpassword extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 final FirebaseUser user;
                 user = FirebaseAuth.getInstance().getCurrentUser();
                 final String email = user.getEmail();
@@ -55,7 +57,8 @@ public class Change_teacherpassword extends AppCompatActivity {
                 final String newpassword=newpass.getText().toString();
 
                 AuthCredential credential = EmailAuthProvider.getCredential(email,oldpassword);
-                user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                user.reauthenticate(credential)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
@@ -63,19 +66,28 @@ public class Change_teacherpassword extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
+                                        progressDialog.dismiss();
                                         Toast.makeText(Change_teacherpassword.this, "Password change", Toast.LENGTH_SHORT).show();
                                         auth.signOut();
                                         startActivity(new Intent(getApplicationContext(),student_login.class));
                                         finish();
                                     }else {
+                                        progressDialog.dismiss();
                                         Toast.makeText(Change_teacherpassword.this, "Sorry", Toast.LENGTH_SHORT).show();
 
                                     }
                                 }
                             });
                         }else {
+                            progressDialog.dismiss();
                             Toast.makeText(Change_teacherpassword.this, "Old password incorrect", Toast.LENGTH_SHORT).show();
                         }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                     progressDialog.dismiss();
+                        Toast.makeText(Change_teacherpassword.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

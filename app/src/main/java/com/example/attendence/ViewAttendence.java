@@ -140,15 +140,15 @@ public class ViewAttendence extends AppCompatActivity implements View.OnClickLis
         TableLayout tl = findViewById(R.id.table);
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-        tr.addView(getTextView(0, "Name", Color.WHITE, Typeface.BOLD,ContextCompat.getColor(this, R.color.colorPrimaryDark)));
-        tr.addView(getTextView(0, "Roll No.", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+        tr.addView(getTextView(0, "Name", Color.BLACK, Typeface.BOLD,ContextCompat.getColor(this, R.color.gray)));
+        tr.addView(getTextView(0, "Roll No.", Color.BLACK, Typeface.BOLD, ContextCompat.getColor(this, R.color.gray)));
         for (Attendence attendence : attendencesList) {
-            tr.addView(getTextView(0, attendence.date, Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+            tr.addView(getTextView(0, attendence.date, Color.BLACK, Typeface.BOLD, ContextCompat.getColor(this, R.color.gray)));
 
         }
-        tr.addView(getTextView(0, "Total Present", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
-        tr.addView(getTextView(0, "Total Absent", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
-        tr.addView(getTextView(0, "Percentage", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+        tr.addView(getTextView(0, "Total Present", Color.BLACK, Typeface.BOLD, ContextCompat.getColor(this, R.color.gray)));
+        tr.addView(getTextView(0, "Total Absent", Color.BLACK, Typeface.BOLD, ContextCompat.getColor(this, R.color.gray)));
+        tr.addView(getTextView(0, "Percentage", Color.BLACK, Typeface.BOLD, ContextCompat.getColor(this, R.color.gray)));
 
 
         tl.addView(tr, getTblLayoutParams());
@@ -170,7 +170,7 @@ public class ViewAttendence extends AppCompatActivity implements View.OnClickLis
                 for (int a = 0; a < attsize; a++) {
                     Boolean status = attendencesList.get(a).getList().get(i).status;
                     if (status) {
-                        tr.addView(getTextView(i, "P", Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+                        tr.addView(getTextView(i, "P", Color.WHITE, Typeface.NORMAL, ContextCompat.getColor(this, R.color.Green)));
                         totalP = totalP + 1;
                         total = totalP * 100 / (totalA + totalP);
 

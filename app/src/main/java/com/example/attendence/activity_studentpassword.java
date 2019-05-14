@@ -51,8 +51,10 @@ public class activity_studentpassword extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 if(!isValidPassword(newpass.getText().toString().trim()))
                 {
+                    progressDialog.dismiss();
                     newpass.setError("Your password contain special symbol,One letter in capitals and numeric also");
                 }
                 else {
@@ -71,17 +73,20 @@ public class activity_studentpassword extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
+                                            progressDialog.dismiss();
                                             Toast.makeText(getApplicationContext(), "Password change", Toast.LENGTH_SHORT).show();
                                             auth.signOut();
                                             startActivity(new Intent(getApplicationContext(), activity_choose.class));
                                             finish();
                                         } else {
+                                            progressDialog.dismiss();
                                             Toast.makeText(getApplicationContext(), "Sorry", Toast.LENGTH_SHORT).show();
 
                                         }
                                     }
                                 });
                             } else {
+                                progressDialog.dismiss();
                                 Toast.makeText(getApplicationContext(), "Old password incorrect", Toast.LENGTH_SHORT).show();
 
 

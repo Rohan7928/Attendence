@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:headerLayout="@layout/header"
+        android:background="@drawable/go_bg"
         app:itemTextColor="@color/colorPrimaryDark"
         android:id="@+id/navigation"
         android:layout_gravity="start"

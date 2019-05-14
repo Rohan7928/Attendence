@@ -78,7 +78,7 @@ public class student_signup extends AppCompatActivity implements View.OnClickLis
         addstudentphoto.setOnClickListener(this);
         fb = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Wait a second baby...");
+        progressDialog.setMessage("wait a second...");
         auth = FirebaseAuth.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference().child("Database").child("Users");
 
@@ -228,11 +228,11 @@ public class student_signup extends AppCompatActivity implements View.OnClickLis
     private void Home() {
         Intent intent = new Intent(this, activity_choose.class);
         startActivity(intent);
-        Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
         finish();
     }
 
     private void Submit() {
+        progressDialog.show();
         final String fname = etfirst.getText().toString().trim();
         final String lname = etlast.getText().toString().trim();
         final String email = etemail.getText().toString().trim();
@@ -332,14 +332,15 @@ public class student_signup extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
-                    Toast.makeText(student_signup.this, "Record", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), studenthome.class));
+                    Toast.makeText(student_signup.this, "New Student Added", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), student_login.class));
                     finish();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
                 Toast.makeText(student_signup.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 finish();
             }

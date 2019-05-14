@@ -87,7 +87,7 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
             }
         });
         View view=navigationView.getHeaderView(0);
-        LinearLayout home=view.findViewById(R.id.header_Home);
+        LinearLayout home=view.findViewById(R.id.header_Profile);
         LinearLayout status=view.findViewById(R.id.header_Status);
         LinearLayout changeassword=view.findViewById(R.id.header_Changepass);
         final CircularImageView imageView=view.findViewById(R.id.student_photo);
@@ -152,8 +152,8 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.header_Home: {
-                startActivity(new Intent(getApplicationContext(), studenthome.class));
+            case R.id.header_Profile: {
+                startActivity(new Intent(getApplicationContext(), student_profile.class));
                 drawerLayout.closeDrawer(Gravity.START);
                 break;
             }
@@ -171,6 +171,7 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
                 auth.signOut();
                 startActivity(new Intent(getApplicationContext(), student_login.class));
                 drawerLayout.closeDrawer(Gravity.START);
+                finish();
                 break;
             }
         }
@@ -194,15 +195,11 @@ public class studenthome extends AppCompatActivity implements View.OnClickListen
                             if (task.isSuccessful())
                             {
 
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    UserDataR teacherstatus = document.toObject(UserDataR.class);
-                                    Intent intent=new Intent(getApplicationContext(),activity_viewstatus.class);
-                                    intent.putExtra("uid",teacherstatus.getUid());
-                                    intent.putExtra("isstudent","true");
-                                    startActivity(intent);
-                                    //Log.e("subject ", subjects.sub_name);
-
-                                }
+                                UserDataR teacherstatus = task.getResult().getDocuments().get(0).toObject(UserDataR.class);
+                                Intent intent=new Intent(getApplicationContext(),activity_viewstatus.class);
+                                intent.putExtra("uid",teacherstatus.getUid());
+                                intent.putExtra("isstudent","true");
+                                startActivity(intent);
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {

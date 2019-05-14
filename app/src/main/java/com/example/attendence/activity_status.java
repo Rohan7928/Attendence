@@ -81,12 +81,12 @@ public class activity_status extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),activity_viewstatus.class));
+                finish();
             }
         });
         isend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.show();
                 if (capImageURI == null) {
                     String email=auth.getCurrentUser().getEmail();
                     String data = etstatus.getText().toString();
@@ -109,6 +109,7 @@ public class activity_status extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
                             Toast.makeText(activity_status.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });

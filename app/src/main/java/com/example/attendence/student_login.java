@@ -50,10 +50,9 @@ public class student_login extends AppCompatActivity implements View.OnClickList
         bthome.setOnClickListener(this);
         btregister.setOnClickListener(this);
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Wait a second baby...");
+        progressDialog.setMessage("Logging In...");
         auth = FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
-//        helper = new DataBaseHelper(this);
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +89,7 @@ public class student_login extends AppCompatActivity implements View.OnClickList
     }
 
     private void login() {
-
+        progressDialog.show();
         String username = etUser.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
@@ -116,12 +115,13 @@ public class student_login extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    progressDialog.show();
+                    progressDialog.dismiss();
                     startActivity(new Intent(getApplicationContext(), studenthome.class));
                     finish();
                 }
                 else
                 {
+                    progressDialog.dismiss();
                     Toast.makeText(student_login.this,"Email & Password doesn't match", Toast.LENGTH_SHORT);
 
                 }

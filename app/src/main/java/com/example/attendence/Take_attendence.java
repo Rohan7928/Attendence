@@ -1,5 +1,6 @@
 package com.example.attendence;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -39,6 +40,7 @@ public class Take_attendence extends AppCompatActivity {
    FloatingActionButton btnattend;
     FirebaseAuth auth;
     FirebaseFirestore db;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,10 @@ public class Take_attendence extends AppCompatActivity {
         recyclerView.setAdapter(attendAdapter);
         final Long timestemp = new Date().getTime();
         date.setText(getDate(timestemp));
-
+       progressDialog=new ProgressDialog(this);
+       progressDialog.setMessage("Saving Attendance..");
+       progressDialog.setCanceledOnTouchOutside(false);
+       progressDialog.setCancelable(false);
         drawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +77,7 @@ public class Take_attendence extends AppCompatActivity {
         btnattend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Take_attendence.this, "xdjxc", Toast.LENGTH_SHORT).show();
+                progressDialog.show();
                 List<Student> list = attendAdapter.list;
                 String currentdate = date.getText().toString().trim();
                 Attendence attendence = new Attendence();
@@ -90,6 +95,7 @@ public class Take_attendence extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
+                                    progressDialog.dismiss();
                                     Toast.makeText(Take_attendence.this, "Updated", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(getApplicationContext(), activity_navigation.class));
                                     finish();
@@ -98,6 +104,7 @@ public class Take_attendence extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
                         Toast.makeText(Take_attendence.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
